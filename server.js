@@ -1,11 +1,12 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-
+import express from 'express';
+import path from 'path';
+// import favicon from 'serve-favicon';
+import logger from 'morgan';
+import './config/db.js';
+import { fileURLToPath } from 'url';
 // Always require and configure near the top 
-require('dotenv').config();
-require('./config/db');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 

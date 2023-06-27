@@ -1,12 +1,11 @@
 import express from 'express';
-// import eventsCtrl from '../controllers/events.js';
+import eventsCtrl from '../controllers/events.js';
 
 
 const router = express.Router();
 
 router.get('/',(req,res) => {
-    console.log('routed')
-    res.json(JSON.stringify({'msg':'events'}));
+    res.json(JSON.stringify(eventsCtrl.getAll()));
 });
 
 export default router

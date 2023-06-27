@@ -1,6 +1,4 @@
 import Seat from './Seat'
-import './seatconfig.css'
-import flatten from '../utilities/flatten'
 import generate2DigitNums from '../utilities/generate-numbers'
 
 export default function SeatSelector() {

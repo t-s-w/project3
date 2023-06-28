@@ -7,7 +7,7 @@ export default function AllEventsPage(){
 
     useEffect(() => {
         async function fetchAllEvents() {
-            const response = await fetch("http://localhost:3001/api/events/Z7r9jZ1Ad_exe");
+            const response = await fetch("http://localhost:3001/api/events");
             const jsonData = await response.json();
             setEvent(jsonData);
             
@@ -19,8 +19,8 @@ export default function AllEventsPage(){
     
     return (
     <>
-    {/* <p>{JSON.stringify(events)}</p> */}
-    <p><EventCard event={events[0]} /></p>
+    {events.map((event) => <p><EventCard event={event}/></p>)}
+   
     
     </>
     )

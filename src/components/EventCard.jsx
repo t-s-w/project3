@@ -1,7 +1,7 @@
-export default function EventCard({events}) {
+export default function EventCard({event}) {
     return (
     <>
-    <p>{JSON.stringify(events)}</p>
+    <p>{event?.name}</p>
     </>
     )
 }

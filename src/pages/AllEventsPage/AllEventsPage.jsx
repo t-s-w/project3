@@ -20,7 +20,7 @@ export default function AllEventsPage(){
     return (
     <>
     {/* <p>{JSON.stringify(events)}</p> */}
-    <p><EventCard events={events} /></p>
+    <p><EventCard event={events[0]} /></p>
     </>
     )
 }

@@ -13,13 +13,14 @@ export default function AllEventsPage(){
             
           }
         fetchAllEvents();    
+        console.log(events);
         }, []);
     
     
     return (
     <>
     {/* <p>{JSON.stringify(events)}</p> */}
-    <p><EventCard/></p>
+    <p><EventCard events={events} /></p>
     </>
     )
 }

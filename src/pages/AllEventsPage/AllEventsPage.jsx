@@ -7,7 +7,7 @@ export default function AllEventsPage() {
 
     useEffect(() => {
         async function fetchAllEvents() {
-            const response = await fetch("http://localhost:3001/api/events/Z7r9jZ1Ad_exe");
+            const response = await fetch("/api/events/Z7r9jZ1Ad_exe");
             const jsonData = await response.json();
             setEvent(jsonData);
 

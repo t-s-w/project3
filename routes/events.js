@@ -4,8 +4,6 @@ import eventsCtrl from '../controllers/events.js';
 
 const router = express.Router();
 
-router.get('/',(req,res) => {
-    res.json(JSON.stringify(eventsCtrl.getAll()));
-});
+router.get('/',eventsCtrl.getAll);
 
 export default router

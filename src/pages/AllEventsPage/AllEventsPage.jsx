@@ -3,13 +3,13 @@ import EventCard from "../../components/EventCard";
 
 export default function AllEventsPage(){
     
-    const [events, setEvent] = useState([]);
+    const [events, setEvents] = useState([]);
 
     useEffect(() => {
         async function fetchAllEvents() {
             const response = await fetch("http://localhost:3001/api/events");
             const jsonData = await response.json();
-            setEvent(jsonData);
+            setEvents(jsonData);
             
           }
         fetchAllEvents();    

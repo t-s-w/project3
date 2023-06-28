@@ -11,6 +11,11 @@ const eventsCtrl = {
         eventData._embedded.events.forEach(async x => {
             const y = await Event.replaceOne({id: x.id},x,{upsert:true})
         })
+    },
+    findById: async (req,res) => {
+        const {id} = req.params;
+        const event = await Event.find({id: id});
+        res.json(event)
     }
 }
 

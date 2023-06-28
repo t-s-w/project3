@@ -3,7 +3,7 @@ import EventCard from "../../components/EventCard";
 
 export default function AllEventsPage(){
     
-    const [events, setEvent] = useState({});
+    const [events, setEvent] = useState([]);
 
     useEffect(() => {
         async function fetchAllEvents() {
@@ -19,8 +19,12 @@ export default function AllEventsPage(){
     
     return (
     <>
-    {events.map((event) => <p><EventCard event={event}/></p>)}
-   
+    {events ? (
+        events.map((event) => <p><EventCard event={event}/></p>)
+        ) : (
+        <p>No events available</p>
+    )}
+    
     
     </>
     )

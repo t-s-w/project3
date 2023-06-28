@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import EventCard from "../../components/EventCard";
 
 export default function AllEventsPage(){
     
@@ -17,7 +18,8 @@ export default function AllEventsPage(){
     
     return (
     <>
-    <p>{JSON.stringify(events)}</p>
+    {/* <p>{JSON.stringify(events)}</p> */}
+    <p><EventCard/></p>
     </>
     )
 }

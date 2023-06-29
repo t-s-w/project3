@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-export default function EventDetailsPage(){
+export default function EventDetailsPage() {
 
-    const {id} = useParams();
+    const { id } = useParams();
     const [event, setEvent] = useState({});
     useEffect(() => {
         async function fetchOneEvent() {
@@ -10,19 +10,19 @@ export default function EventDetailsPage(){
             const jsonData = await response.json();
             setEvent(jsonData);
             console.log(jsonData);
-          }
-        fetchOneEvent();    
+        }
+        fetchOneEvent();
         console.log(event);
-        }, []);
-    
-    
+    }, []);
+
+
     return (
-    <>
-    <p>id = {id}</p>
-    <p>{event[0].name}</p>
-    <p>{event[0].dates.start.dateTime}</p>
-    <p>{event[0]._embedded.venues[0].name}</p>
-    <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
-    </>
+        <>
+            <p>id = {id}</p>
+            <p>{event?.name}</p>
+            <p>{event?.dates?.start?.dateTime}</p>
+            <p>{event?._embedded?.venues[0].name}</p>
+            <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
+        </>
     )
 }

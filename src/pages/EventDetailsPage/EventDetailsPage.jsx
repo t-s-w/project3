@@ -18,8 +18,10 @@ export default function EventDetailsPage(){
     
     return (
     <>
-    <p>{id}</p>
+    <p>id = {id}</p>
     <p>{event[0].name}</p>
+    <p>{event[0].dates.start.dateTime}</p>
+    <p>{event[0]._embedded.venues[0].name}</p>
     <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
     </>
     )

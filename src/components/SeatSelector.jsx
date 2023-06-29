@@ -40,7 +40,8 @@ export default function SeatSelector() {
                 }</div>
             })
         }</div>
-        <div className="flex flex-row place-items-center"><p>Selected: <br />{selected.row && `${selected.row}${selected.start < 10 ? '0' + selected.start : selected.start}-${selected.row}${selected.end < 10 ? '0' + selected.end : selected.end}`}</p></div>
+        <div className="flex flex-col place-content-center"><p>Selected:</p><p className="text-lg font-bold">{selected.row && `${selected.row}${selected.start < 10 ? '0' + selected.start : selected.start}-${selected.row}${selected.end < 10 ? '0' + selected.end : selected.end}`}</p></div>
         <div className="flex flex-col place-items-center place-content-center"><p>Total price: </p><p className="text-lg font-bold">${price}</p></div>
+        <div className="flex flex-col place-content-center"><button className="bg-cyan-200">Purchase</button></div>
     </div>
 }

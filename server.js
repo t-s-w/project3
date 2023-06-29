@@ -5,6 +5,7 @@ import logger from 'morgan';
 import './config/db.js';
 import { fileURLToPath } from 'url';
 import eventsRoute from './routes/events.js'
+import cors from 'cors'
 
 // Always require and configure near the top 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,6 +13,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 
@@ -22,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Put API routes here, before the "catch all" route
 
-app.use('/api/events',eventsRoute);
+app.use('/api/events', eventsRoute);
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

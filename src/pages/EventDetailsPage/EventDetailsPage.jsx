@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Popout from 'react-popout';
+import MoreInfoEvent from "../../components/MoreInfoEvent";
+
 export default function EventDetailsPage() {
 
     const { id } = useParams();
     const [event, setEvent] = useState({});
+    const [popoutVisible, setPopoutVisible] = useState(false);
+
     useEffect(() => {
         async function fetchOneEvent() {
             const response = await fetch(`/api/events/${id}`);
@@ -20,8 +25,6 @@ export default function EventDetailsPage() {
     const dateStr = dateObj ? dateObj.toUTCString() : '';
     // console.log(dateObj);
 
-    
-
     return (
         <>
             <p>id = {id}</p>
@@ -34,7 +37,13 @@ export default function EventDetailsPage() {
             
             <p>{event?.name}</p>
             <p>{dateStr}</p>
-            <p>{event?._embedded?.venues[0].name}</p>
+            <p>{event?._embedded?.venues[0].name}, {event?._embedded?.venues[0].city.name}, {event?._embedded?.venues[0].state.name}</p>
+            
+            <button onClick={() => setPopoutVisible(true)}>More info</button>
+            
+            <MoreInfoEvent trigger={popoutVisible} setTrigger={setPopoutVisible}>
+                <div>Pop out content</div>
+            </MoreInfoEvent>
             <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
         </>
     )

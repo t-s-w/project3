@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Popout from 'react-popout';
+import MoreInfoEvent from "../../components/MoreInfoEvent";
+
 export default function EventDetailsPage() {
   const { id } = useParams();
   const [event, setEvent] = useState({});
   const navigate = useNavigate();
 
-    const { id } = useParams();
-    const [event, setEvent] = useState({});
+    
+    const [popoutVisible, setPopoutVisible] = useState(false);
+
     useEffect(() => {
         async function fetchOneEvent() {
             const response = await fetch(`/api/events/${id}`);
@@ -40,7 +44,12 @@ export default function EventDetailsPage() {
             
             <p>{event?.name}</p>
             <p>{dateStr}</p>
-            <p>{event?._embedded?.venues[0].name}</p>
+            <p>{event?._embedded?.venues[0].name}, {event?._embedded?.venues[0].city.name}, {event?._embedded?.venues[0].state.name}</p>
+            
+            <button onClick={() => setPopoutVisible(true)}>More info</button>
+            
+            <MoreInfoEvent event={event} trigger={popoutVisible} setTrigger={setPopoutVisible} />
+                
             <button className="rounded-full m-5 bg-blue-500" onClick={handleClick}>Purchase</button>
         </>
     )

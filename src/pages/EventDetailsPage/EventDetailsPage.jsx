@@ -41,9 +41,8 @@ export default function EventDetailsPage() {
             
             <button onClick={() => setPopoutVisible(true)}>More info</button>
             
-            <MoreInfoEvent trigger={popoutVisible} setTrigger={setPopoutVisible}>
-                <div>Pop out content</div>
-            </MoreInfoEvent>
+            <MoreInfoEvent event={event} trigger={popoutVisible} setTrigger={setPopoutVisible} />
+                
             <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
         </>
     )

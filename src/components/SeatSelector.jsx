@@ -31,7 +31,7 @@ export default function SeatSelector() {
         }
     }
 
-    function handleClick() {
+    function handlePurchase() {
       //post to collection
       console.log(selected);
       console.log(price);
@@ -82,7 +82,7 @@ export default function SeatSelector() {
           <p className="text-lg font-bold">${price}</p>
         </div>
         <div className="flex flex-col place-content-center">
-          <button className="bg-cyan-200" onClick={handleClick}>
+          <button className="bg-cyan-200" onClick={handlePurchase}>
             Purchase
           </button>
         </div>

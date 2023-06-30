@@ -7,6 +7,7 @@ import './App.css'
 import NavBar from "../../components/NavBar";
 import SignUpPage from '../SignUpPage/SignUpPage';
 import { getUser } from '../../utilities/users-service';
+import LoginForm from '../../components/LoginForm.jsx'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/events" element={<AllEventsPage />} />
         <Route path="/events/:id" element={<EventDetailsPage />} />
         <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+        <Route path="/login" element={<LoginForm setUser={setUser} />} />
       </Routes>
     </>
   );

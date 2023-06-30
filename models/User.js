@@ -10,10 +10,6 @@ const SALT_ROUNDS = process.env.SALT_ROUNDS
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -27,7 +23,13 @@ const userSchema = new Schema({
         required: true
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+        transform: function (doc, ret) {
+            delete ret.password;
+            return ret;
+        }
+    }
 })
 
 userSchema.pre('save', async function (next) {

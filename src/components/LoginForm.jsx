@@ -16,9 +16,9 @@ export default function LoginForm({ setUser }) {
             setSuccessMsg('Sign up successful! Returning you to the home page soon...')
             setUser(user);
             setTimeout(() => navigate('/'), 2000);
-        } catch {
+        } catch (err) {
             setFormState('idle')
-            setError("Login failed - Try again")
+            setError(err.message)
         }
     }
     return <div className="loginContainer">

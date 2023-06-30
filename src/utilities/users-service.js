@@ -32,5 +32,11 @@ export function getUser() {
 }
 
 export async function login(credentials) {
-    console.log(credentials)
+    try {
+        const token = await usersAPI.login(credentials);
+        localStorage.setItem('token', token);
+        return getUser();
+    } catch (err) {
+        throw new Error(err.message);
+    }
 }

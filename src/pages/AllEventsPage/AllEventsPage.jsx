@@ -18,14 +18,15 @@ export default function AllEventsPage(){
 
 
     return (
-    <>
-    {events ? (
-        events.map((event) => <p><EventCard event={event}/></p>)
-        ) : (
-        <p>No events available</p>
-    )}
-    
-    
-    </>
-    )
+      <>
+        <h1 className="text-left text-2xl">Top events</h1>
+        <div className="flex flex-wrap">
+          {events ? (
+            events.map((event) => <EventCard event={event} key={event._id} />)
+          ) : (
+            <p>No events available</p>
+          )}
+        </div>
+      </>
+    );
 }

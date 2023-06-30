@@ -31,17 +31,61 @@ export default function SeatSelector() {
         }
     }
 
-    return <div className="grid grid-cols-3 grid-rows-4">
-        <div className="config1 w-full flex flex-col place-items-center col-span-3 row-span-3">{
-            config1.map(x => {
-                const seats = generate2DigitNums(x.count).map(num => ({ row: x.row, num: num, grade: x.grade }))
-                return <div key={x.row} className="flex flex-row place-items-center">{
-                    seats.map(x => <Seat row={x.row} num={x.num} grade={x.grade} key={x.row + x.num} selected={x.row === selected.row && parseInt(x.num) >= selected.start && parseInt(x.num) <= selected.end} onClick={() => handleClick(x.row, x.num, x.grade)} />)
-                }</div>
-            })
-        }</div>
-        <div className="flex flex-col place-content-center"><p>Selected:</p><p className="text-lg font-bold">{selected.row && `${selected.row}${selected.start < 10 ? '0' + selected.start : selected.start}-${selected.row}${selected.end < 10 ? '0' + selected.end : selected.end}`}</p></div>
-        <div className="flex flex-col place-items-center place-content-center"><p>Total price: </p><p className="text-lg font-bold">${price}</p></div>
-        <div className="flex flex-col place-content-center"><button className="bg-cyan-200">Purchase</button></div>
-    </div>
+    function handlePurchase() {
+      //post to collection
+      console.log(selected);
+      console.log(price);
+    }
+
+    return (
+      <div className="grid grid-cols-3 grid-rows-4">
+        <div className="config1 w-full flex flex-col place-items-center col-span-3 row-span-3">
+          {config1.map((x) => {
+            const seats = generate2DigitNums(x.count).map((num) => ({
+              row: x.row,
+              num: num,
+              grade: x.grade,
+            }));
+            return (
+              <div key={x.row} className="flex flex-row place-items-center">
+                {seats.map((x) => (
+                  <Seat
+                    row={x.row}
+                    num={x.num}
+                    grade={x.grade}
+                    key={x.row + x.num}
+                    selected={
+                      x.row === selected.row &&
+                      parseInt(x.num) >= selected.start &&
+                      parseInt(x.num) <= selected.end
+                    }
+                    onClick={() => handleClick(x.row, x.num, x.grade)}
+                  />
+                ))}
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-col place-content-center">
+          <p>Selected:</p>
+          <p className="text-lg font-bold">
+            {selected.row &&
+              `${selected.row}${
+                selected.start < 10 ? "0" + selected.start : selected.start
+              }-${selected.row}${
+                selected.end < 10 ? "0" + selected.end : selected.end
+              }`}
+          </p>
+        </div>
+        <div className="flex flex-col place-items-center place-content-center">
+          <p>Total price: </p>
+          <p className="text-lg font-bold">${price}</p>
+        </div>
+        <div className="flex flex-col place-content-center">
+          <button className="bg-cyan-200" onClick={handlePurchase}>
+            Purchase
+          </button>
+        </div>
+      </div>
+    );
 }

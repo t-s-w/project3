@@ -8,12 +8,14 @@ import NavBar from "../../components/NavBar";
 import SignUpPage from '../SignUpPage/SignUpPage';
 import { getUser } from '../../utilities/users-service';
 import LoginForm from '../../components/LoginForm.jsx'
+import OrderPage from "../OrderPage/OrderPage";
 
 function App() {
 
   const [user, setUser] = useState(getUser());
   return (
     <>
+      <h1>ticketmaster</h1>
       <NavBar />
       <Routes>
         <Route
@@ -25,6 +27,7 @@ function App() {
         <Route path="/events/:id" element={<EventDetailsPage />} />
         <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
         <Route path="/login" element={<LoginForm setUser={setUser} />} />
+        <Route path="/events/:id/order" element={<OrderPage />} />
       </Routes>
     </>
   );

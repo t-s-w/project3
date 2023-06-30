@@ -6,11 +6,13 @@ import EventDetailsPage from '../EventDetailsPage/EventDetailsPage';
 import './App.css'
 import NavBar from "../../components/NavBar";
 import SignUpPage from '../SignUpPage/SignUpPage';
+import OrderPage from "../OrderPage/OrderPage";
 
 function App() {
 
   return (
     <>
+      <h1>ticketmaster</h1>
       <NavBar />
       <Routes>
         <Route
@@ -21,6 +23,7 @@ function App() {
         <Route path="/events" element={<AllEventsPage />} />
         <Route path="/events/:id" element={<EventDetailsPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/events/:id/order" element={<OrderPage />} />
       </Routes>
     </>
   );

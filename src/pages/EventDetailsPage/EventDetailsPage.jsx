@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 export default function EventDetailsPage() {
+  const { id } = useParams();
+  const [event, setEvent] = useState({});
+  const navigate = useNavigate();
 
     const { id } = useParams();
     const [event, setEvent] = useState({});
@@ -20,6 +23,9 @@ export default function EventDetailsPage() {
     const dateStr = dateObj ? dateObj.toUTCString() : '';
     // console.log(dateObj);
 
+    const handleClick = () => {
+        navigate(`/events/${id}/order`);
+      };
     
 
     return (
@@ -35,7 +41,8 @@ export default function EventDetailsPage() {
             <p>{event?.name}</p>
             <p>{dateStr}</p>
             <p>{event?._embedded?.venues[0].name}</p>
-            <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
+            <button className="rounded-full m-5 bg-blue-500" onClick={handleClick}>Purchase</button>
         </>
     )
+
 }

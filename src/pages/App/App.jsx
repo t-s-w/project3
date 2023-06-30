@@ -5,6 +5,7 @@ import AllEventsPage from '../AllEventsPage/AllEventsPage.jsx'
 import EventDetailsPage from '../EventDetailsPage/EventDetailsPage';
 import './App.css'
 import NavBar from "../../components/NavBar";
+import SignUpPage from '../SignUpPage/SignUpPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/seatselect" element={<SeatSelect />} />
         <Route path="/events" element={<AllEventsPage />} />
         <Route path="/events/:id" element={<EventDetailsPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </>
   );

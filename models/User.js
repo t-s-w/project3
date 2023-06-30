@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { createRequire } from 'module';
+import Debug from 'debug';
+const debug = Debug('userModel');
 const require = createRequire(import.meta.url);
 dotenv.config();
 const bcrypt = require('bcrypt');
 
-const SALT_ROUNDS = process.env.SALT_ROUNDS
+
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 
 const Schema = mongoose.Schema;
 

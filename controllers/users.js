@@ -1,5 +1,8 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
+import Debug from 'debug'
+
+const debug = Debug('usersCtrl: ')
 
 function createJWT(user) {
     return jwt.sign(

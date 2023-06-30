@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { signUp } from '../../utilities/users-service.js'
+import * as usersSvc from '../../utilities/users-service.js'
 
 export default function SignUpPage() {
     const [formState, setFormState] = useState('idle');
     const [errorMsg, setErrorMsg] = useState(null);
-    const handleSubmit = function (evt) {
+    const handleSubmit = async function (evt) {
         evt.preventDefault()
         if (evt.target.password.value !== evt.target.confirmPassword.value) {
             setErrorMsg('Passwords do not match')
         }
         try {
-            const formData = ({ email: this.target.email.value, password: this.target.password.value })
-            const user = await usersAPI.signUp(formData);
+            const formData = ({ email: evt.target.email.value, password: evt.target.password.value })
+            const user = await usersSvc.signUp(formData);
             console.log(user);
-        } catch {
+        } catch (err) {
+            console.log(err);
             setErrorMsg("Signup failed - try again.")
         }
     }

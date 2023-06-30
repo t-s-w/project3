@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "node --watch server.js"
+    "server": "node --watch server.js",
+    "server-debug": "DEBUG=* node --watch server.js",
+    "server-debug-win": "$env:DEBUG='*'; npm start"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

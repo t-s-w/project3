@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { createRequire } from 'module';
 import Debug from 'debug';
-const debug = Debug('userModel');
+const debug = Debug('app:userModel');
 const require = createRequire(import.meta.url);
 dotenv.config();
 const bcrypt = require('bcrypt');

@@ -15,12 +15,18 @@ export default function EventDetailsPage() {
         console.log(event);
     }, []);
 
+    const dateISO = event?.dates?.start?.dateTime;
+    const dateObj = dateISO ? new Date(dateISO) : null;
+    const dateStr = dateObj ? dateObj.toUTCString() : '';
+    // console.log(dateObj);
+
+    
 
     return (
         <>
             <p>id = {id}</p>
             <p>{event?.name}</p>
-            <p>{event?.dates?.start?.dateTime}</p>
+            <p>{dateStr}</p>
             <p>{event?._embedded?.venues[0].name}</p>
             <button className="rounded-full m-5 bg-blue-500" >Purchase</button>
         </>

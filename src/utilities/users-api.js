@@ -19,3 +19,17 @@ export async function signUp(userData) {
         throw new Error(error.message)
     }
 }
+
+export async function login(credentials) {
+    const res = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials)
+    });
+    if (res.ok) {
+        return res.json();
+    } else {
+        const error = await res.json()
+        throw new Error(error.message)
+    }
+}

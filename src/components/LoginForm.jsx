@@ -12,6 +12,7 @@ export default function LoginForm({ setUser }) {
         const credentials = ({ email: evt.target.email.value, password: evt.target.password.value })
         try {
             setFormState('loading')
+            setError(null)
             const user = await usersSvc.login(credentials);
             setSuccessMsg('Sign up successful! Returning you to the home page soon...')
             setUser(user);
@@ -23,7 +24,7 @@ export default function LoginForm({ setUser }) {
     }
     return <div className="loginContainer">
         <form onSubmit={handleSubmit}>
-            <fieldset disabled={formState === "loading"}>
+            <fieldset disabled={formState === "loading"} className="flex flex-col place-items-center place-content-center [&>*]:m-1">
                 <input className="p-2 pl-4 border-solid border-2 rounded-full" type="email" name="email" placeholder="E-mail" required />
                 <input className="p-2 pl-4 border-solid border-2 rounded-full" type="password" name="password" placeholder="Password" required />
                 <button className="w-fit bg-slate-300 font-bold disabled:bg-slate-200 disabled:text-slate-700">Log in</button>

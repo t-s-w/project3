@@ -8,10 +8,8 @@ export async function signUp(userData) {
         localStorage.setItem('token', token);
         return getUser();
     } catch (err) {
-        throw new Error(err);
+        throw new Error(err.message);
     }
-    // Baby step by returning whatever is sent back by the server
-
 }
 
 export function getToken() {

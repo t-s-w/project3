@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as usersSvc from '../../utilities/users-service.js'
 import Debug from 'debug';
+import { useNavigate } from 'react-router-dom';
 
 const debug = Debug('signuppage')
 
@@ -8,15 +9,20 @@ export default function SignUpPage(props) {
     const { setUser } = props;
     const [formState, setFormState] = useState('idle');
     const [errorMsg, setErrorMsg] = useState(null);
+    const [successMsg, setSuccessMsg] = useState(null);
+    const navigate = useNavigate();
     const handleSubmit = async function (evt) {
         evt.preventDefault()
         if (evt.target.password.value !== evt.target.confirmPassword.value) {
             setErrorMsg('Passwords do not match')
         }
         try {
+            setFormState('loading')
             const formData = ({ email: evt.target.email.value, password: evt.target.password.value })
             const user = await usersSvc.signUp(formData);
+            setSuccessMsg('Sign up successful! Returning you to the home page soon...')
             setUser(user);
+            setTimeout(() => navigate('/'), 2000);
         } catch (err) {
             setErrorMsg(err.message);
         }
@@ -32,6 +38,7 @@ export default function SignUpPage(props) {
                 <input className="p-2 pl-4 border-solid border-2 rounded-full" type="password" name="confirmPassword" placeholder="Confirm Password" />
                 <button className="w-fit bg-slate-300 font-bold disabled:bg-slate-200 disabled:text-slate-700" >Go!</button>
                 {errorMsg && <p className="text-red-700">{errorMsg}</p>}
+                {successMsg && <p className="text-green-700">{successMsg}</p>}
             </fieldset>
         </form>
     </>

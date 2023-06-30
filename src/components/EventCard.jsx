@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
-import "./eventcard.css"
 
 export default function EventCard({ event }) {
-    return (
+  return (
     <>
-    <div className="event-container">
-        <div className="event-card-item">
-        <img src={event?.images[0].url} width={300} />
+      <div className="w-1/3 p-3">
+        <img className="w-full h-40 object-cover" src={event?.images[0].url} />
         <Link to={`/events/${event?.id}`}>{event?.name}</Link>
-        </div>
-    </div>
+      </div>
     </>
-    )
+  );
 }

@@ -11,7 +11,8 @@ export default function SignUpPage() {
         }
         try {
             const formData = ({ email: this.target.email.value, password: this.target.password.value })
-            const user = await usersAPI.signUp(userData);
+            const user = await usersAPI.signUp(formData);
+            console.log(user);
         } catch {
             setErrorMsg("Signup failed - try again.")
         }

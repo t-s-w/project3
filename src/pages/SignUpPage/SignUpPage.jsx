@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import * as usersSvc from '../../utilities/users-service.js'
+import Debug from 'debug';
+
+const debug = Debug('signuppage')
 
 export default function SignUpPage() {
     const [formState, setFormState] = useState('idle');
@@ -14,8 +17,7 @@ export default function SignUpPage() {
             const user = await usersSvc.signUp(formData);
             console.log(user);
         } catch (err) {
-            console.log(err);
-            setErrorMsg("Signup failed - try again.")
+            console.log(err.message)
         }
     }
 

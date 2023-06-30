@@ -6,7 +6,7 @@ export default function EventDetailsPage() {
     const [event, setEvent] = useState({});
     useEffect(() => {
         async function fetchOneEvent() {
-            const response = await fetch(`http://localhost:3001/api/events/${id}`);
+            const response = await fetch(`/api/events/${id}`);
             const jsonData = await response.json();
             setEvent(jsonData);
             console.log(jsonData);

@@ -14,12 +14,13 @@ const eventsCtrl = {
     },
     findById: async (req, res) => {
         const { id } = req.params;
+        console.log(id);
         try {
-            const event = await Event.find({ id: id });
-            if (event.length < 1) {
+            const event = await Event.findById(id);
+            if (!event) {
                 res.status(404).json({ "msg": "Requested event id not found" })
             }
-            res.json(event[0])
+            res.json(event)
         } catch {
             res.status(404).json({ "msg": "Id not found!" })
         }

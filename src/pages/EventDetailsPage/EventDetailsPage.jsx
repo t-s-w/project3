@@ -25,6 +25,7 @@ export default function EventDetailsPage() {
     return (
         <>
             <p>id = {id}</p>
+            <img src={event?.images[0]?.url} />
             <p>{event?.name}</p>
             <p>{dateStr}</p>
             <p>{event?._embedded?.venues[0].name}</p>

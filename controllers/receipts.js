@@ -25,4 +25,4 @@ async function cancel(req, res) {
   }
 }
 
-export { purchase };
+export { purchase, cancel };

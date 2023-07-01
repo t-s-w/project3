@@ -20,6 +20,7 @@ async function cancel(req, res) {
   const id = req.params.id
   try {
     const response = await Receipt.deleteOne({ _id: id });
+    res.json(response);
   } catch (err) {
     res.status(400).json({ message: err.message })
   }

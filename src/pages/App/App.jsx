@@ -15,20 +15,21 @@ function App() {
   const [user, setUser] = useState(getUser());
   return (
     <>
-      <h1>ticketmaster</h1>
       <NavBar />
-      <Routes>
-        <Route
-          path="/"
-          element={<h1>The quick brown fox jumps over the lazy dog</h1>}
-        />
-        <Route path="/seatselect" element={<SeatSelect />} />
-        <Route path="/events" element={<AllEventsPage />} />
-        <Route path="/events/:id" element={<EventDetailsPage />} />
-        <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
-        <Route path="/login" element={<LoginForm setUser={setUser} />} />
-        <Route path="/events/:id/order" element={<OrderPage />} />
-      </Routes>
+      <main className="flex flex-col justify-around flex-1">
+        <Routes>
+          <Route
+            path="/"
+            element={<h1>The quick brown fox jumps over the lazy dog</h1>}
+          />
+          <Route path="/seatselect" element={<SeatSelect />} />
+          <Route path="/events" element={<AllEventsPage />} />
+          <Route path="/events/:id" element={<EventDetailsPage />} />
+          <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+          <Route path="/login" element={<LoginForm setUser={setUser} />} />
+          <Route path="/events/:id/order" element={<OrderPage />} />
+        </Routes>
+      </main>
     </>
   );
 }

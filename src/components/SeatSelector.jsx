@@ -83,7 +83,7 @@ export default function SeatSelector(props) {
                 <p className="text-lg font-bold">${price}</p>
             </div>
             <div className="flex flex-col place-content-center">
-                <button className="bg-cyan-200" onClick={handlePurchase}>
+                <button className="bg-cyan-200 dark:bg-cyan-800" onClick={handlePurchase}>
                     Purchase
                 </button>
             </div>

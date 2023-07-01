@@ -6,6 +6,7 @@ import './config/db.js';
 import { fileURLToPath } from 'url';
 import eventsRoute from './routes/events.js'
 import usersRoute from './routes/users.js'
+import receiptsRoute from './routes/receipts.js'
 import cors from 'cors'
 
 // Always require and configure near the top 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Put API routes here, before the "catch all" route
 
+app.use('/api/receipts', receiptsRoute)
 app.use('/api/users', usersRoute);
 app.use('/api/events', eventsRoute);
 

@@ -19,7 +19,6 @@ function createJWT(user) {
 async function create(req, res) {
     try {
         const user = await User.create(req.body);
-        console.log(user);
         const token = createJWT(user);
         res.json(token);
     } catch (err) {
@@ -34,7 +33,6 @@ async function create(req, res) {
 
 async function login(req, res) {
     try {
-        console.log(req.body)
         const user = await User.findOne({ email: req.body.email })
         if (!user) {
             res.status(401).json({ message: "No user associated with this e-mail!" })
@@ -46,7 +44,6 @@ async function login(req, res) {
             return
         }
         res.json(createJWT(user));
-
     } catch (err) {
         res.status(400).json({ message: err.message })
     }

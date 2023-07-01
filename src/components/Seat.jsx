@@ -9,10 +9,11 @@ const gradeColours = [
 ]
 
 export default function Seat(props) {
-    const { row, num, onClick, selected, grade } = props;
+    const { row, num, onClick, selected, grade, unavailable } = props;
     const baseStyle = 'h-8 w-8 m-[2px] text-[0.7rem] rounded-md border-slate-400 border-2 p-2 flex place-items-center place-content-center select-none '
     const colourStyle = gradeColours[grade][1 - selected]
-    const classes = baseStyle + colourStyle
+    const unavailableStyle = unavailable ? ' bg-stone-400 dark:bg-stone-500 hover:bg-stone-400 dark:hover:bg-stone-500 ' : ''
+    const classes = baseStyle + colourStyle + unavailableStyle
     console.log(classes)
     return <div className={classes} onClick={onClick} > <p>{row + num}</p></div >
 }

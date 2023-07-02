@@ -5,7 +5,7 @@ export default function Categories () {
 
     useEffect(() => {
         async function fetchAllCategories() {
-            const response = await fetch("http://localhost:3001/api/events/categories/categories");
+            const response = await fetch("/api/events/categories/categories");
             const jsonData = await response.json();
             setCategories(jsonData);
 

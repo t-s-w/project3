@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 export default function Category (props){
-    // console.log(props.categoryArray)
+    console.log(props.categoryArray)
     return (
     <div>
     <h2><Link 

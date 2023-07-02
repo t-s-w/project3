@@ -6,7 +6,7 @@ import './config/db.js';
 import { fileURLToPath } from 'url';
 import eventsRoute from './routes/events.js'
 import usersRoute from './routes/users.js'
-import usersDetailsRoute from "./routes/userDetails.js";
+// import usersDetailsRoute from "./routes/userDetails.js";
 import cors from "cors";
 
 // Always require and configure near the top
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 app.use("/api/users", usersRoute);
 app.use("/api/events", eventsRoute);
-app.use("/api/usersDetails", usersDetailsRoute);
+// app.use("/api/usersDetails", usersDetailsRoute);
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

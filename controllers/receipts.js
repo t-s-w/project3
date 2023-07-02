@@ -1,4 +1,5 @@
 import Receipt from "../models/Receipt.js";
+import Event from "../models/Event.js"
 
 async function purchase(req, res) {
   try {
@@ -26,4 +27,19 @@ async function cancel(req, res) {
   }
 }
 
-export { purchase, cancel };
+async function getReceiptWithEvent(req, res) {
+  const id = req.params.id
+  try {
+    const receipt = await Receipt.findById(id)
+    if (!response) {
+      res.status(404).json({ message: "Requested receipt id not found" })
+    }
+    const event = await Event.findById(receipt.eventId)
+    receipt.embeddedEvent = event
+    res.json(receipt)
+  } catch (err) {
+    res.status(400).json({ message: err.message })
+  }
+}
+
+export { purchase, cancel, getReceiptWithEvent };

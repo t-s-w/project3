@@ -9,6 +9,7 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import { getUser } from '../../utilities/users-service';
 import LoginForm from '../../components/LoginForm.jsx'
 import OrderPage from "../OrderPage/OrderPage";
+import Categories from '../sortByCategoriesPage/CategoriesPage';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
           <Route path="/login" element={<LoginForm setUser={setUser} />} />
           <Route path="/events/:id/order" element={<OrderPage />} />
+          <Route path="/events/categories" element={<Categories/>}/>
         </Routes>
       </main>
     </>

@@ -30,8 +30,8 @@ export default function LoginForm() {
                 <input className="p-2 pl-4 border-solid border-2 rounded-full w-full text-slate-500 dark:text-darkDefault" type="email" name="email" placeholder="E-mail" required />
                 <input className="p-2 pl-4 border-solid border-2 rounded-full w-full text-slate-500 dark:text-darkDefault" type="password" name="password" placeholder="Password" required />
                 <button className="w-fit bg-slate-300 font-bold disabled:bg-slate-200 disabled:text-slate-700">Log in</button>
-                <p>No account yet? <Link to="/signup">Sign up</Link></p>
-                {error && <p className="text-red-700">{error}</p>}
+                <p>No account yet? <Link to="/signup" className="underline">Sign up</Link></p>
+                {error && <p className="text-red-500">{error}</p>}
                 {successMsg && <p className="text-emerald-300">{successMsg}</p>}
             </fieldset>
         </form>

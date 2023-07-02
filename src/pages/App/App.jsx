@@ -9,8 +9,9 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import { getUser } from '../../utilities/users-service';
 import LoginForm from '../../components/LoginForm.jsx'
 import OrderPage from "../OrderPage/OrderPage";
-import Categories from '../sortByCategoriesPage/CategoriesPage';
+import Categories from '../CategoriesPage/CategoriesPage';
 import Category from '../../components/Category';
+import EventsByCategory from '../CategoriesPage/EventsByCategory';
 
 export const UserContext = createContext();
 
@@ -34,7 +35,7 @@ function App() {
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
             <Route path="/events/categories/categories" element={<Categories />} />
-            <Route path="/events/categories/categories/:categoryName" element={<Category/>} />
+            <Route path="/events/categories/categories/:categoryName" element={<EventsByCategory/>} />
           </Routes>
         </main>
       </UserContext.Provider>

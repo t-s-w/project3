@@ -9,9 +9,9 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import { getUser } from '../../utilities/users-service';
 import LoginForm from '../../components/LoginForm.jsx'
 import OrderPage from "../OrderPage/OrderPage";
+import UserModal from "../../components/UserModal";
 
 function App() {
-
   const [user, setUser] = useState(getUser());
   return (
     <>
@@ -28,6 +28,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
         <Route path="/login" element={<LoginForm setUser={setUser} />} />
         <Route path="/events/:id/order" element={<OrderPage />} />
+        <Route path="/signup/details" element={<UserModal />} />
       </Routes>
     </>
   );

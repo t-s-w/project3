@@ -12,11 +12,14 @@ import OrderPage from "../OrderPage/OrderPage";
 import Categories from '../CategoriesPage/CategoriesPage';
 import Category from '../../components/Category';
 import EventsByCategory from '../CategoriesPage/EventsByCategory';
+import UserModal from "../../components/UserModal";
 
 export const UserContext = createContext();
 
-function App() {
 
+
+
+function App() {
   const [user, setUser] = useState(getUser());
   return (
     <>
@@ -32,6 +35,7 @@ function App() {
             <Route path="/events" element={<AllEventsPage />} />
             <Route path="/events/:id" element={<EventDetailsPage />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+            <Route path="/signup/details" element={<UserModal />} />
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
             <Route path="/events/categories/categories" element={<Categories />} />

@@ -7,7 +7,7 @@ export default function NavBar() {
         <span className="font-['Merienda'] font-black italic text-2xl"><Link to="/">ticketmadam</Link></span>
         <ul className="pl-5 flex flex-row justify-end [&>*]:mx-8 flex-1">
           <li><Link to="/events">Events</Link></li>
-          <li><Link to="/events/categories">Categories</Link></li>
+          <li><Link to="/events/categories/categories">Categories</Link></li>
           <li><input placeholder="🔎 Search Bar" className="rounded-md"></input></li>
           <li>⌾ Sign-in/Register</li>
         </ul>

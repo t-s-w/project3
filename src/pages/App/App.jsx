@@ -29,7 +29,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
           <Route path="/login" element={<LoginForm setUser={setUser} />} />
           <Route path="/events/:id/order" element={<OrderPage />} />
-          <Route path="/events/categories" element={<Categories/>}/>
+          <Route path="/events/categories/categories" element={<Categories/>}/>
         </Routes>
       </main>
     </>

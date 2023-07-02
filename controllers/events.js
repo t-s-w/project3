@@ -47,7 +47,7 @@ async function getTakenSeats(req, res) {
 async function getAllCategories(req, res) {
     try {
     const categories  = await Event.distinct('classifications.segment.name');
-    const eventsByCategory = {};
+    let eventsByCategory = {};
     
     for (const category of categories) {
       const events = await Event.find({ 'classifications.segment.name': category });

@@ -31,11 +31,11 @@ async function getReceiptWithEvent(req, res) {
   const id = req.params.id
   try {
     const receipt = await Receipt.findById(id)
-    if (!response) {
+    if (!receipt) {
       res.status(404).json({ message: "Requested receipt id not found" })
     }
     const event = await Event.findById(receipt.eventId)
-    receipt.embeddedEvent = event
+    receipt._doc.embeddedEvent = event
     res.json(receipt)
   } catch (err) {
     res.status(400).json({ message: err.message })

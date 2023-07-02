@@ -7,8 +7,9 @@ export default function EventsByCategory(){
     console.log(categoryArray)
     return (
     <>
+    
     <h1>{categoryName}</h1>
-    {/* {JSON.stringify(categoryArray)} */}
+    <div className="flex flex-wrap">
     {categoryArray.map(category => ( 
         <div className="w-1/3 p-3">
             <img className="w-full h-40 object-cover" src={category.images[0].url} />
@@ -16,6 +17,7 @@ export default function EventsByCategory(){
             
         </div>
     ))}
+    </div>
     </>
     )
 }

@@ -1,0 +1,4 @@
+#dropdown:checked+.slide {
+    height: 300px;
+    min-height: min-content;
+}

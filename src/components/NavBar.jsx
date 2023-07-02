@@ -10,9 +10,9 @@ export default function NavBar() {
           <li><Link to="/events">Events</Link></li>
           <li>Categories</li>
           <li><input placeholder="🔎 Search Bar" className="rounded-md"></input></li>
-          <li><LoginButton /></li>
-        </ul>
 
+        </ul>
+        <LoginButton />
       </nav>
     </>
   );

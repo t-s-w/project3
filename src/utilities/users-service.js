@@ -40,3 +40,7 @@ export async function login(credentials) {
         throw new Error(err.message);
     }
 }
+
+export function logout() {
+    localStorage.removeItem('token');
+}

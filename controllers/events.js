@@ -44,5 +44,20 @@ async function getTakenSeats(req, res) {
     }
 }
 
+async function getAllCategories(req, res) {
+    try {
+    const categories  = await Event.distinct('classifications.segment.name');
+    const eventsByCategory = {};
+    
+    for (const category of categories) {
+      const events = await Event.find({ 'classifications.segment.name': category });
+      eventsByCategory[category] = events;
+    }
 
-export { getAll, refreshData, findById, getTakenSeats }
+    res.json(eventsByCategory);
+    } catch (error) {
+    res.status(500).json({ message: 'Error retrieving events' });
+  }
+}
+
+export { getAll, refreshData, findById, getTakenSeats, getAllCategories }

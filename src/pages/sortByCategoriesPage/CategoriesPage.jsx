@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Category from "../../components/Category";
 
 export default function Categories () {
     const [categories, setCategories] = useState({});
@@ -16,7 +17,10 @@ export default function Categories () {
     
     return (
     <>
-    {JSON.stringify(categories)}
+    {Object.keys(categories).map(category => 
+        
+        <h2><Category categoryName={category} categoryArray={categories[category]}/></h2>
+        )}
     </>
     )
 }

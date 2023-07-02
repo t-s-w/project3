@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LoginButton from './LoginButton.jsx';
 
 export default function NavBar() {
   return (
@@ -9,7 +10,7 @@ export default function NavBar() {
           <li><Link to="/events">Events</Link></li>
           <li>Categories</li>
           <li><input placeholder="🔎 Search Bar" className="rounded-md"></input></li>
-          <li>⌾ Sign-in/Register</li>
+          <li><LoginButton /></li>
         </ul>
 
       </nav>

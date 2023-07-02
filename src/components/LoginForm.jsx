@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import * as usersSvc from '../utilities/users-service'
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../pages/App/App";
 
-export default function LoginForm({ setUser }) {
+export default function LoginForm() {
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [formState, setFormState] = useState('idle');

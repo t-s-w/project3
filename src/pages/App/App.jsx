@@ -12,6 +12,7 @@ import OrderPage from "../OrderPage/OrderPage";
 import Categories from '../CategoriesPage/CategoriesPage';
 import Category from '../../components/Category';
 import EventsByCategory from '../CategoriesPage/EventsByCategory';
+import SearchResults from '../SearchResults/SearchResults';
 
 export const UserContext = createContext();
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/events/:id/order" element={<OrderPage />} />
             <Route path="/events/categories/categories" element={<Categories />} />
             <Route path="/events/categories/categories/:categoryName" element={<EventsByCategory/>} />
+            <Route path="/events/search/:searchResults" element={<SearchResults/>}/>
           </Routes>
         </main>
       </UserContext.Provider>

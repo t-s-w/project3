@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginButton from './LoginButton.jsx';
+import { useRef } from "react";
 
 export default function NavBar() {
+  const inputRef = useRef();
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    navigate('/events/search/:searchResults');
+  }
   return (
     <>
       <nav className="px-5 flex  bg-blue-800 py-5 rounded-b-md text-darkDefault font-extrabold place-items-center [&>:first-child]:mr-auto  ">
@@ -9,7 +15,7 @@ export default function NavBar() {
         <ul className="pl-5 flex flex-row justify-end [&>*]:mx-8 flex-1">
           <li><Link to="/events">Events</Link></li>
           <li><Link to="/events/categories/categories">Categories</Link></li>
-          <li><input placeholder="🔎 Search Bar" className="rounded-md bg text-sky-600"></input><button className="p-0.5">🔎</button></li>
+          <li><input placeholder="🔎 Search Bar" className="rounded-md bg text-sky-600" ref={inputRef}></input><button onClick={handleSearch} className="p-0.5">🔎</button></li>
 
         </ul>
         <LoginButton />

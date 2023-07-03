@@ -9,4 +9,4 @@ async function refresh (req,res) {
     })
 }
 
-refresh()
+refresh().then(x => console.log(x))

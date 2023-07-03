@@ -2,10 +2,12 @@ import { useParams, useSearchParams } from "react-router-dom";
 import SeatSelector from "../../components/SeatSelector";
 import { useEffect, useState } from "react";
 
+
 export default function OrderPage() {
   const { id } = useParams();
   const [event, setEvent] = useState({});
   const [unavailableSeats, setUnavailableSeats] = useState(new Set());
+  
   console.log(id);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function OrderPage() {
       </h1>
       <p>Date: {event?.dates?.start?.dateTime}</p>
       <p>Seating plan for {event?._embedded?.venues[0].name}</p>
-      <SeatSelector unavailableSeats={unavailableSeats} />
+      <SeatSelector unavailableSeats={unavailableSeats} eventId={id} />
     </>
   );
 }

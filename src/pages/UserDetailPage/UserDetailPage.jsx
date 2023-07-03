@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 export default function UserDetailPage() {
+
+  const [confirmButton, setConfirmButton] = useState(false);
+
   const handleSubmit = async function (evt) {
     evt.preventDefault();
     const formData = {
@@ -19,7 +22,7 @@ export default function UserDetailPage() {
       });
       const jsonData = await response.json();
       console.log(jsonData); // Process the response data as needed
-      setTimeout(() => navigate("/"), 2000);
+      setConfirmButton(false);
     } catch (error) {
       console.error(error);
       // Handle any errors that occur during the request
@@ -60,7 +63,7 @@ export default function UserDetailPage() {
             />
           </div>
           <button className="w-fit bg-slate-300 font-bold disabled:bg-slate-200 disabled:text-slate-700">
-            I'm ready!
+            Confirm
           </button>
         </fieldset>
       </form>

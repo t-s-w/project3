@@ -14,8 +14,7 @@ import Categories from '../CategoriesPage/CategoriesPage';
 import Category from '../../components/Category';
 import EventsByCategory from '../CategoriesPage/EventsByCategory';
 import SearchResults from '../SearchResults/SearchResults';
-import ReceiptCardTestPage from '../ReceiptCardTestPage/ReceiptCardTestPage'
-import UserModal from "../../components/UserModal";
+import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
 import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
 

@@ -1,9 +1,8 @@
-export default function userModal() {
+import { useNavigate } from "react-router-dom";
+
+export default function UserDetailPage() {
   const handleSubmit = async function (evt) {
     evt.preventDefault();
-    console.log(evt.target.name.value);
-    console.log(evt.target.contactNo.value);
-    console.log(evt.target.address.value);
     const formData = {
       name: evt.target.name.value,
       contactNo: evt.target.contactNo.value,
@@ -20,6 +19,7 @@ export default function userModal() {
       });
       const jsonData = await response.json();
       console.log(jsonData); // Process the response data as needed
+      setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error(error);
       // Handle any errors that occur during the request
@@ -32,8 +32,8 @@ export default function userModal() {
         onSubmit={handleSubmit}
         className="flex items-center justify-center h-screen"
       >
+        <h1 className="font-bold whitespace-nowrap">Your details</h1>
         <fieldset className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid border-2 flex flex-col place-content-center place-items-center w-1/3 rounded-xl p-8">
-          <h1 className="font-bold whitespace-nowrap">Just a little more...</h1>
           <div className="grid grid-cols-2 gap-4">
             <label className="mb-2 text-left"> Name </label>
             <input

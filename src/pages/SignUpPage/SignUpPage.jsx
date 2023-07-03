@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as usersSvc from '../../utilities/users-service.js'
-import UserModal from "../../components/UserModal";
+import UserModal from "../UserDetailPage/UserDetailPage.jsx";
 
 import Debug from "debug";
 import { useNavigate } from "react-router-dom";
@@ -31,8 +31,8 @@ export default function SignUpPage(props) {
         "Sign up successful! Returning you to the home page soon..."
       );
       setUser(user);
-      setShowModal(true);
-      setTimeout(() => navigate("/"), 2000);
+
+      setTimeout(() => navigate("/user/details"), 2000);
     } catch (err) {
       
       setErrorMsg(err.message);
@@ -74,7 +74,7 @@ export default function SignUpPage(props) {
           {errorMsg && <p className="text-red-700">{errorMsg}</p>}
           {successMsg && <p className="text-green-700">{successMsg}</p>}
         </fieldset>
-        {showModal && <UserModal />}
+        {showModal && <UserModal setSuccessMsg={setSuccessMsg} />}
       </form>
     </>
   );

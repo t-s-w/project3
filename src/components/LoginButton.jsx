@@ -22,13 +22,41 @@ export default function LoginButton() {
         logout();
         setUser(null);
     }
-    return user ? <div className="relative w-60">
-        <label htmlFor="dropdown"><span className="cursor-pointer bg-blue-600 hover:bg-blue-400 py-3 px-6 rounded-full">{user.email}</span></label>
+    return user ? (
+      <div className="relative w-60">
+        <label htmlFor="dropdown">
+          <span className="cursor-pointer bg-blue-600 hover:bg-blue-400 py-3 px-6 rounded-full">
+            {user.email}
+            {/* //* change this to "Welcome back, {user.name}! */}
+          </span>
+        </label>
         <input type="checkbox" id="dropdown" className="hidden" />
         <div className="flex flex-col [&>a]:py-4 [&>a]:rounded-full border-box px-5 rounded-b-lg slide clear-both w-full h-0 top-10 overflow-hidden transition-[height] absolute bg-blue-800">
-            <Link to="" className="hover:bg-blue-400 hover:text-inherit">Purchase History</Link>
-            <Link to="" className="hover:bg-blue-400 hover:text-inherit" onClick={handleLogout}>Log out</Link>
-
+          <Link
+            to="/user/details"
+            className="hover:bg-blue-400 hover:text-inherit"
+          >
+            My Account
+          </Link>
+          <Link to="" className="hover:bg-blue-400 hover:text-inherit">
+            Purchase History
+          </Link>
+          <Link
+            to="/user/password"
+            className="hover:bg-blue-400 hover:text-inherit"
+          >
+            Change password
+          </Link>
+          <Link
+            to=""
+            className="hover:bg-red-400 hover:text-inherit"
+            onClick={handleLogout}
+          >
+            Log out
+          </Link>
         </div>
-    </div > : <NotLoggedIn />
+      </div>
+    ) : (
+      <NotLoggedIn />
+    );
 }

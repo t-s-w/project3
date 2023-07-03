@@ -9,6 +9,7 @@ import usersRoute from './routes/users.js'
 // import usersDetailsRoute from "./routes/userDetails.js";
 import receiptsRoute from './routes/receipts.js'
 import cors from 'cors'
+import checkToken from './config/checkToken.js'
 
 
 
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 // Middleware to verify token and assign user object of payload to req.user.
 // Be sure to mount before routes
-app.use(require('./config/checkToken'));
+app.use(checkToken);
 
 // Put API routes here, before the "catch all" route
 

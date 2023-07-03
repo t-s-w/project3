@@ -11,7 +11,7 @@ export default function NavBar() {
           const response = await fetch(`/api/events/search/${searchQuery}`);
           const jsonData = await response.json();
           setSearchResults(jsonData);
-          navigate('/events/search/:searchResults', {state:{searchResults}});
+          navigate('/events/search/:searchResults', {state:{searchResults: searchResults, searchQuery: searchQuery}});
   }
   return (
     <>

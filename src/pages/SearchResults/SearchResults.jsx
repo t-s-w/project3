@@ -10,7 +10,9 @@ export default function SearchResults() {
 
     return (
     <>
-    <h1>{searchResults.length} search result(s) for "{searchQuery}"</h1>
+    {searchResults && searchResults.length > 0 ? (
+    <div>
+    <h1>{searchResults?.length} search result(s) for "{searchQuery}"</h1>
     <div className="flex flex-wrap">
     {searchResults.map(result => 
     <div>
@@ -19,6 +21,9 @@ export default function SearchResults() {
         
     </div>)}
     </div>
+    </div>) : (
+    <h1>No search result(s) for "{searchQuery}"</h1>)}
+    
     
     </>
     )

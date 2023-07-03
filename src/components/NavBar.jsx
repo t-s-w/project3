@@ -9,7 +9,7 @@ export default function NavBar() {
         <ul className="pl-5 flex flex-row justify-end [&>*]:mx-8 flex-1">
           <li><Link to="/events">Events</Link></li>
           <li><Link to="/events/categories/categories">Categories</Link></li>
-          <li><input placeholder="🔎 Search Bar" className="rounded-md"></input></li>
+          <li><input placeholder="🔎 Search Bar" className="rounded-md bg text-sky-600"></input><button className="p-0.5">🔎</button></li>
 
         </ul>
         <LoginButton />

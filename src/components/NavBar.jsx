@@ -6,11 +6,8 @@ export default function NavBar() {
   const inputRef = useRef();
   const navigate = useNavigate();
   const handleSearch = () => {
-    const searchQuery = inputRef.current.value;
-    // const response = await fetch(`https://openlibrary.org/search.json?title=${bookTitle}`);
-    // const jsonData = await response.json();
-    // props.setSearchResults(jsonData.docs); 
-    navigate('/events/search/:searchResults');
+    const searchQuery = inputRef.current.value; 
+    navigate('/events/search/:searchResults', {state:{searchQuery}});
   }
   return (
     <>

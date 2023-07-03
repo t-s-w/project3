@@ -1,6 +1,7 @@
 import Event from '../models/Event.js';
 import Receipt from '../models/Receipt.js'
 import vars from '../config/vars.js';
+// import { events } from 'mongoose';
 
 
 async function getAll(req, res) {
@@ -60,4 +61,16 @@ async function getAllCategories(req, res) {
   }
 }
 
-export { getAll, refreshData, findById, getTakenSeats, getAllCategories }
+async function findBySearch(req,res) { 
+    const { searchResults } = req.params;
+
+    try {
+        const events = await Event.find({"name": {"$regex": searchResults, "$options": "i"}})
+        
+        res.json(events)
+    } catch (error)
+    {
+        res.status(500).json({ message: 'Error retrieving events' });
+    }
+}
+export { getAll, refreshData, findById, getTakenSeats, getAllCategories, findBySearch }

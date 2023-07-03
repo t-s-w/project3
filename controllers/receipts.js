@@ -1,7 +1,7 @@
 import Receipt from "../models/Receipt.js";
 import Event from "../models/Event.js"
 
-async function purchase(req, res) {
+export async function purchase(req, res) {
   try {
     const pastReceipts = await Receipt.find({ eventId: req.body.eventId, row: req.body.row })
     for (let receipt of pastReceipts) {
@@ -17,7 +17,7 @@ async function purchase(req, res) {
   }
 }
 
-async function cancel(req, res) {
+export async function cancel(req, res) {
   const id = req.params.id
   try {
     const response = await Receipt.deleteOne({ _id: id });
@@ -27,19 +27,28 @@ async function cancel(req, res) {
   }
 }
 
-async function getReceiptWithEvent(req, res) {
+export async function getReceiptWithEvent(req, res) {
   const id = req.params.id
   try {
-    const receipt = await Receipt.findById(id)
+    const receipt = await Receipt.findById(id).populate('eventId')
     if (!receipt) {
       res.status(404).json({ message: "Requested receipt id not found" })
     }
-    const event = await Event.findById(receipt.eventId)
-    receipt._doc.embeddedEvent = event
     res.json(receipt)
   } catch (err) {
     res.status(400).json({ message: err.message })
   }
 }
 
-export { purchase, cancel, getReceiptWithEvent };
+export async function getReceiptsByUser(req,res) {
+  const userId = req.user._id
+  if (!userId) {
+    res.status(401).json({message: "Not logged in"})
+  }
+  try {
+    const receipts = await Receipt.find({customerId: userId}).populate('eventId');
+    res.json(receipts)
+  } catch(err) {
+    res.status(400).json({message:err.message})
+  }
+}

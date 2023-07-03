@@ -10,22 +10,25 @@ import UserDetailPage from "../UserDetailPage/UserDetailPage";
 import { getUser } from "../../utilities/users-service";
 import LoginForm from "../../components/LoginForm.jsx";
 import OrderPage from "../OrderPage/OrderPage";
-import Categories from "../CategoriesPage/CategoriesPage";
-import Category from "../../components/Category";
-import EventsByCategory from "../CategoriesPage/EventsByCategory";
-import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
+import Categories from '../CategoriesPage/CategoriesPage';
+import Category from '../../components/Category';
+import EventsByCategory from '../CategoriesPage/EventsByCategory';
+import SearchResults from '../SearchResults/SearchResults';
+import ReceiptCardTestPage from '../ReceiptCardTestPage/ReceiptCardTestPage'
+import UserModal from "../../components/UserModal";
+import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
-import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
 
 
 export const UserContext = createContext();
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [searchResults, setSearchResults] = useState();
   return (
     <>
       <UserContext.Provider value={{ user, setUser }}>
-        <NavBar />
+        <NavBar searchResults={searchResults} setSearchResults={setSearchResults}/>
         <main className="flex flex-col justify-around flex-1">
           <Routes>
             <Route
@@ -40,14 +43,9 @@ function App() {
             <Route path="/user/password" element={<UserPasswordPage />} />
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
-            <Route
-              path="/events/categories/categories"
-              element={<Categories />}
-            />
-            <Route
-              path="/events/categories/categories/:categoryName"
-              element={<EventsByCategory />}
-            />
+            <Route path="/events/categories/categories" element={<Categories />} />
+            <Route path="/events/categories/categories/:categoryName" element={<EventsByCategory/>} />
+            <Route path="/events/search/:searchResults" element={<SearchResults searchResults={searchResults}/>}/>
             <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
             <Route path="/purchasehistory" element={<PurchaseHistory />} />
           </Routes>

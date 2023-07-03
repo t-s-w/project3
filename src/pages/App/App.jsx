@@ -6,8 +6,9 @@ import EventDetailsPage from '../EventDetailsPage/EventDetailsPage';
 import './App.css'
 import NavBar from "../../components/NavBar";
 import SignUpPage from '../SignUpPage/SignUpPage';
-import { getUser } from '../../utilities/users-service';
-import LoginForm from '../../components/LoginForm.jsx'
+import UserDetailPage from "../UserDetailPage/UserDetailPage";
+import { getUser } from "../../utilities/users-service";
+import LoginForm from "../../components/LoginForm.jsx";
 import OrderPage from "../OrderPage/OrderPage";
 import Categories from '../CategoriesPage/CategoriesPage';
 import Category from '../../components/Category';
@@ -16,11 +17,10 @@ import SearchResults from '../SearchResults/SearchResults';
 import ReceiptCardTestPage from '../ReceiptCardTestPage/ReceiptCardTestPage'
 import UserModal from "../../components/UserModal";
 import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
+import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
+
 
 export const UserContext = createContext();
-
-
-
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -39,7 +39,8 @@ function App() {
             <Route path="/events" element={<AllEventsPage />} />
             <Route path="/events/:id" element={<EventDetailsPage />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
-            <Route path="/signup/details" element={<UserModal />} />
+            <Route path="/user/details" element={<UserDetailPage />} />
+            <Route path="/user/password" element={<UserPasswordPage />} />
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
             <Route path="/events/categories/categories" element={<Categories />} />

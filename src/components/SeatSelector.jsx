@@ -4,7 +4,7 @@ import { useState, useContext } from 'react'
 import { UserContext} from '../pages/App/App.jsx';
 
 export default function SeatSelector(props) {
-    const { unavailableSeats, eventId } = props;
+    const { unavailableSeats, eventId, setBoughtReceipt } = props;
     const [selected, setSelected] = useState({ row: undefined, start: undefined, end: undefined })
     const [price, setPrice] = useState(0)
     const {user} = useContext(UserContext);
@@ -55,7 +55,8 @@ export default function SeatSelector(props) {
         const response = await fetch('/api/receipts/', options)
 
         if (response.ok) {
-            return response.json()
+            response.json().then(setBoughtReceipt).catch(console.log)
+            return 
         } else {
             const error = await response.json()
             console.log(error.message)

@@ -34,7 +34,9 @@ export default function SignUpPage(props) {
       setShowModal(true);
       setTimeout(() => navigate("/"), 2000);
     } catch (err) {
+      
       setErrorMsg(err.message);
+      setFormState("idle");
     }
   };
 

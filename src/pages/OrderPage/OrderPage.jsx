@@ -1,12 +1,14 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import SeatSelector from "../../components/SeatSelector";
 import { useEffect, useState } from "react";
+import PurchaseSuccess from "../../components/PurchaseSuccess";
 
 
 export default function OrderPage() {
   const { id } = useParams();
   const [event, setEvent] = useState({});
   const [unavailableSeats, setUnavailableSeats] = useState(new Set());
+  const [boughtReceipt, setBoughtReceipt] = useState(null);
   
   console.log(id);
 
@@ -28,7 +30,8 @@ export default function OrderPage() {
       </h1>
       <p>Date: {event?.dates?.start?.dateTime}</p>
       <p>Seating plan for {event?._embedded?.venues[0].name}</p>
-      <SeatSelector unavailableSeats={unavailableSeats} eventId={id} />
+      <SeatSelector unavailableSeats={unavailableSeats} eventId={id} setBoughtReceipt={setBoughtReceipt} />
+      {boughtReceipt ? <PurchaseSuccess receipt={boughtReceipt}/> : null}
     </>
   );
 }

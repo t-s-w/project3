@@ -21,7 +21,7 @@ export default function PurchaseHistory() {
     return pageStatus ? <h1>{pageStatus}</h1> : 
     
     <div className="flex flex-col [&>div]:my-2 place-items-center">
-        <h1>Purchase History</h1>
+        <h1 className="mt-8">Purchase History</h1>
     {receipts.map(receipt => <PurchaseCard receipt={receipt} />)}
     </div>
     

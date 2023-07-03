@@ -10,7 +10,7 @@ export default function PurchaseCard({ receipt }) {
                 <div className="text-lg font-extrabold">{event.name}</div>
                 <div className="ml-auto text-right">{eventDate} {eventTime}</div>
             </div>
-            <div className="w-full grid grid-cols-[3fr_1fr]">
+            <div className="w-full grid grid-cols-[3fr_1fr] bg-white text-lightDefault dark:text-darkDefault dark:bg-slate-800">
                 <div> <p>Venue: {event._embedded.venues[0].name}</p>
                     <p>Bought: {(new Date(receipt.createdAt)).toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
                 </div>

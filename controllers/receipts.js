@@ -11,7 +11,9 @@ export async function purchase(req, res) {
       }
     }
     const acceptedReceipt = await Receipt.create(req.body);
-    res.json(acceptedReceipt);
+    const populatedReceipt = await Receipt.findById(acceptedReceipt._id).populate('eventId');
+    console.log(populatedReceipt);
+    res.json(populatedReceipt);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

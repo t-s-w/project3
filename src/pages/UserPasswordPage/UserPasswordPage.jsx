@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import userDetails from "../../../controllers/userDetails";
+
 import { useState, useContext } from "react";
 import { UserContext } from "../App/App";
 // import User from "../../../models/User";

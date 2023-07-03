@@ -24,10 +24,11 @@ export const UserContext = createContext();
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [searchResults, setSearchResults] = useState();
   return (
     <>
       <UserContext.Provider value={{ user, setUser }}>
-        <NavBar />
+        <NavBar searchResults={searchResults} setSearchResults={setSearchResults}/>
         <main className="flex flex-col justify-around flex-1">
           <Routes>
             <Route
@@ -43,7 +44,7 @@ function App() {
             <Route path="/events/:id/order" element={<OrderPage />} />
             <Route path="/events/categories/categories" element={<Categories />} />
             <Route path="/events/categories/categories/:categoryName" element={<EventsByCategory/>} />
-            <Route path="/events/search/:searchResults" element={<SearchResults/>}/>
+            <Route path="/events/search/:searchResults" element={<SearchResults searchResults={searchResults}/>}/>
             <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
             <Route path="/purchasehistory" element={<PurchaseHistory />} />
           </Routes>

@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom"
 
-export default function SearchResults() {
+export default function SearchResults(props) {
     
     const location = useLocation();
-    const {searchResults, searchQuery} = location.state;
-    console.log("search results", searchResults);
+    // const {searchResults, searchQuery} = location.state;
+    const {searchQuery} = location.state;
+    console.log("search results", props.searchResults);
     console.log("search query", searchQuery);
 
     return (
     <>
-    {searchResults && searchResults.length > 0 ? (
+    {props.searchResults && props.searchResults.length > 0 ? (
     <div>
-    <h1>{searchResults?.length} search result(s) for "{searchQuery}"</h1>
+    <h1>{props.searchResults?.length} search result(s) for "{searchQuery}"</h1>
     <div className="flex flex-wrap">
-    {searchResults.map(result => 
+    {props.searchResults.map(result => 
     <div>
         <img className="w-full h-40 object-cover" src={result.images[0].url} />
         <Link to={`/events/${result?._id}`}>{result.name}</Link>
@@ -22,7 +23,7 @@ export default function SearchResults() {
     </div>)}
     </div>
     </div>) : (
-    <h1>No search result(s) for "{searchQuery}"</h1>)}
+    <h1>{props?.searchResults?.msg}</h1>)}
     
     
     </>

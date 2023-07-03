@@ -2,16 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginButton from './LoginButton.jsx';
 import { useRef, useState } from "react";
 
-export default function NavBar() {
-  const [searchResults, setSearchResults] = useState();
+export default function NavBar(props) {
+  
   const inputRef = useRef();
   const navigate = useNavigate();
   const handleSearch = async () => {
           const searchQuery = inputRef.current.value; 
           const response = await fetch(`/api/events/search/${searchQuery}`);
           const jsonData = await response.json();
-          setSearchResults(jsonData);
-          navigate('/events/search/:searchResults', {state:{searchResults: searchResults, searchQuery: searchQuery}});
+          props.setSearchResults(jsonData);
+          navigate('/events/search/:searchResults', {state:{searchQuery: searchQuery}}) //, {state:{searchResults: searchResults, searchQuery: searchQuery}});
   }
   return (
     <>

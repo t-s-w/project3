@@ -27,7 +27,7 @@ export default function PurchaseHistory() {
                 <h1 className="mt-8">Purchase History</h1>
                 {receipts.map(receipt => <div key={receipt._id} className="w-full flex flex-row justify-center place-items-center [&>*]:mx-4"><PurchaseCard receipt={receipt} /><button className="h-fit" onClick={() => setCancelBooking(receipt)}>Cancel</button></div>)}
             </div>
-            {cancelBooking ? <ConfirmCancel receipt={cancelBooking} setCancelBooking={setCancelBooking} setRefreshPage={setRefreshPage} /> : null}
+            {cancelBooking ? <ConfirmCancel receipt={cancelBooking} setCancelBooking={setCancelBooking} setRefreshPage={setRefreshPage} refreshPage={refreshPage} /> : null}
         </>
 
 }

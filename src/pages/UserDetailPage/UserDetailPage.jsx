@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 export default function UserDetailPage() {
-
-  const [confirmButton, setConfirmButton] = useState(false);
+  // const [confirmButton, setConfirmButton] = useState(false);
 
   const handleSubmit = async function (evt) {
     evt.preventDefault();
@@ -33,10 +32,12 @@ export default function UserDetailPage() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex items-center justify-center h-screen"
+        className="flex flex-col items-left justify h-screen"
       >
-        <h1 className="font-bold whitespace-nowrap">Your details</h1>
-        <fieldset className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid border-2 flex flex-col place-content-center place-items-center w-1/3 rounded-xl p-8">
+        <h1 className="text-2xl text-left m-5">
+          <b>Your details</b>
+        </h1>
+        <div className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
           <div className="grid grid-cols-2 gap-4">
             <label className="mb-2 text-left"> Name </label>
             <input
@@ -62,10 +63,8 @@ export default function UserDetailPage() {
               name="address"
             />
           </div>
-          <button className="w-fit bg-slate-300 font-bold disabled:bg-slate-200 disabled:text-slate-700">
-            Confirm
-          </button>
-        </fieldset>
+          <button className="w-fit bg-blue-800 font-bold">Confirm</button>
+        </div>
       </form>
     </>
   );

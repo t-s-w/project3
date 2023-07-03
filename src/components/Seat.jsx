@@ -14,6 +14,5 @@ export default function Seat(props) {
     const colourStyle = gradeColours[grade][1 - selected]
     const unavailableStyle = unavailable ? ' bg-stone-400 dark:bg-stone-600 hover:bg-stone-400 dark:hover:bg-stone-600 ' : ''
     const classes = baseStyle + colourStyle + unavailableStyle
-    console.log(classes)
     return <div className={classes} onClick={onClick} > <p>{row + num}</p></div >
 }

@@ -1,5 +1,4 @@
 export default function PurchaseCard({ receipt }) {
-    console.log(receipt)
     const event = receipt.eventId
     const eventDateTime = (new Date(event.dates.start.dateTime))
     const eventDate = eventDateTime.toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })

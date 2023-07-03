@@ -1,8 +1,10 @@
 import sendRequest from "../../utilities/send-request";
 import { useState, useEffect } from "react";
 import PurchaseCard from '../../components/PurchaseCard'
+import ConfirmCancel from '../../components/ConfirmCancel'
 
 export default function PurchaseHistory() {
+    const [cancelBooking, setCancelBooking] = useState(null)
     const [receipts, setReceipts] = useState([])
     const [pageStatus, setPageStatus] = useState(null)
     async function getReceipts() {
@@ -19,10 +21,12 @@ export default function PurchaseHistory() {
         getReceipts()
     },[])
     return pageStatus ? <h1>{pageStatus}</h1> : 
-    
+    <>
     <div className="flex flex-col [&>div]:my-2 place-items-center">
         <h1 className="mt-8">Purchase History</h1>
-    {receipts.map(receipt => <PurchaseCard receipt={receipt} />)}
+    {receipts.map(receipt => <div  className="w-full flex flex-row justify-center place-items-center [&>*]:mx-4"><PurchaseCard receipt={receipt} /><button className="h-fit" onClick={() => setCancelBooking(receipt)}>Cancel</button></div>)}
     </div>
+    {cancelBooking ? <ConfirmCancel receipt={cancelBooking} setCancelBooking={setCancelBooking}/> : null}
+    </>
     
 }

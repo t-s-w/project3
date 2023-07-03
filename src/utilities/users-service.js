@@ -44,3 +44,12 @@ export async function login(credentials) {
 export function logout() {
     localStorage.removeItem('token');
 }
+
+export function checkToken(){
+    try {
+        return usersAPI.checkToken()
+    }
+    catch (err) {
+        throw new Error(err.message);
+    }
+}

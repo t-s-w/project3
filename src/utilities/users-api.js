@@ -1,35 +1,41 @@
+import * as usersSvc from './users-service.js'
+
+async function sendRequest(url, method = 'GET', payload = null) {
+    // Fetch accepts an options object as the 2nd argument
+    // used to include a data payload, set headers, etc. 
+    const options = { method };
+    if (payload) {
+      options.headers = { 'Content-Type': 'application/json' };
+      options.body = JSON.stringify(payload);
+    }
+    const token = usersSvc.getToken();
+    if(token) {
+        options.headers = options.headers || {};
+        options.headers.Authorization = `Bearer ${token}`
+    }
+
+    const res = await fetch(url, options);
+    // res.ok will be false if the status code set to 4xx in the controller action
+    if (res.ok) {
+        return res.json();
+    } else {
+        const error = await res.json()
+        throw new Error(error.message);
+    }
+    
+  }
 
 
-export async function signUp(userData) {
+export function signUp(userData) {
     // Fetch uses an options object as a second arg to make requests
     // other than basic GET requests, include data, headers, etc. 
-    const res = await fetch('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Fetch requires data payloads to be stringified
-        // and assigned to a body property on the options object
-        body: JSON.stringify(userData)
-    });
-    // Check if request was successful
-    if (res.ok) {
-        // res.json() will resolve to the JWT
-        return res.json();
-    } else {
-        const error = await res.json()
-        throw new Error(error.message)
-    }
+    return sendRequest('/api/users', 'POST', userData)
 }
 
-export async function login(credentials) {
-    const res = await fetch('/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
-    });
-    if (res.ok) {
-        return res.json();
-    } else {
-        const error = await res.json()
-        throw new Error(error.message)
-    }
+export function login(credentials) {
+    return sendRequest('/api/users/login','POST',credentials)
 }
+
+export function checkToken() {
+    return sendRequest(`api/users/check-token`);
+  }

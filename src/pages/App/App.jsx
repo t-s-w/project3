@@ -14,6 +14,7 @@ import Category from '../../components/Category';
 import EventsByCategory from '../CategoriesPage/EventsByCategory';
 import ReceiptCardTestPage from '../ReceiptCardTestPage/ReceiptCardTestPage'
 import UserModal from "../../components/UserModal";
+import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 
 export const UserContext = createContext();
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/events/categories/categories" element={<Categories />} />
             <Route path="/events/categories/categories/:categoryName" element={<EventsByCategory />} />
             <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
+            <Route path="/purchasehistory" element={<PurchaseHistory />} />
           </Routes>
         </main>
       </UserContext.Provider>

@@ -48,4 +48,11 @@ async function login(req, res) {
         res.status(400).json({ message: err.message })
     }
 }
-export { create, login } 
+
+function checkToken(req, res) {
+    // req.user will always be there for you when a token is sent
+    console.log('req.user', req.user);
+    res.json(req.exp);
+  }
+
+export { create, login, checkToken} 

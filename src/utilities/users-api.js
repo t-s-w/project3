@@ -1,35 +1,17 @@
 
+import sendRequest from './send-request.js'
 
-export async function signUp(userData) {
+
+export function signUp(userData) {
     // Fetch uses an options object as a second arg to make requests
     // other than basic GET requests, include data, headers, etc. 
-    const res = await fetch('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Fetch requires data payloads to be stringified
-        // and assigned to a body property on the options object
-        body: JSON.stringify(userData)
-    });
-    // Check if request was successful
-    if (res.ok) {
-        // res.json() will resolve to the JWT
-        return res.json();
-    } else {
-        const error = await res.json()
-        throw new Error(error.message)
-    }
+    return sendRequest('/api/users', 'POST', userData)
 }
 
-export async function login(credentials) {
-    const res = await fetch('/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
-    });
-    if (res.ok) {
-        return res.json();
-    } else {
-        const error = await res.json()
-        throw new Error(error.message)
-    }
+export function login(credentials) {
+    return sendRequest('/api/users/login','POST',credentials)
 }
+
+export function checkToken() {
+    return sendRequest(`api/users/check-token`);
+  }

@@ -30,6 +30,16 @@ const classificationSchema = new mongoose.Schema({
 
 })
 
+const venueSchema = new mongoose.Schema({
+    "name": String,
+    "id": String,
+    "images": [imageSchema],
+    "postalCode": String,
+    "timezone": String,
+    "city": {"name": String},
+    "state": {"name": String, "stateCode": String}
+})
+
 const productSchema = new mongoose.Schema({
     "name": String,
     "url": String,
@@ -80,10 +90,11 @@ const eventSchema = new mongoose.Schema({
     "ageRestrictions": {
         "legalAgeEnforced": Boolean
     },
+    "ticketLimit": {
+        "info": String
+    },
     "_embedded": {
-        "venues": [
-            {"id": String}
-        ],
+        "venues": [venueSchema],
         "attractions": [
             {"id": String}
         ]

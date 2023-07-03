@@ -1,11 +1,13 @@
 import Seat from './Seat'
 import generate2DigitNums from '../utilities/generate-numbers'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { UserContext} from '../pages/App/App.jsx';
 
 export default function SeatSelector(props) {
-    const { unavailableSeats } = props;
+    const { unavailableSeats, eventId } = props;
     const [selected, setSelected] = useState({ row: undefined, start: undefined, end: undefined })
     const [price, setPrice] = useState(0)
+    const {user} = useContext(UserContext);
     const config1 = [{ row: "A", count: 10, grade: 1 },
     { row: "B", count: 11, grade: 1 },
     { row: "C", count: 12, grade: 1 },
@@ -32,10 +34,32 @@ export default function SeatSelector(props) {
         }
     }
 
-    function handlePurchase() {
+    async function handlePurchase() {
         //post to collection
-        console.log(selected);
-        console.log(price);
+        const body = {
+            eventId: eventId,
+            row: selected.row,
+            startSeat: selected.start,
+            endSeat: selected.end,
+            amountPaid: price,
+            physical:true,
+            customerId: user._id
+        }
+        const options = {
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }
+        const response = await fetch('/api/receipts/', options)
+
+        if (response.ok) {
+            return response.json()
+        } else {
+            const error = await response.json()
+            console.log(error.message)
+        }
     }
 
     return (

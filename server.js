@@ -6,29 +6,42 @@ import './config/db.js';
 import { fileURLToPath } from 'url';
 import eventsRoute from './routes/events.js'
 import usersRoute from './routes/users.js'
+// import usersDetailsRoute from "./routes/userDetails.js";
 import receiptsRoute from './routes/receipts.js'
 import cors from 'cors'
+import checkToken from './config/checkToken.js'
 
-// Always require and configure near the top 
+
+
+
+// Always require and configure near the top
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.use(cors())
-app.use(logger('dev'));
+app.use(cors());
+app.use(logger("dev"));
 app.use(express.json());
 
 // Configure both serve-favicon & static middleware
 // to serve from the production 'dist' folder
 // app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, "dist")));
+
+// Middleware to verify token and assign user object of payload to req.user.
+// Be sure to mount before routes
+app.use(checkToken);
 
 // Put API routes here, before the "catch all" route
 
+
+app.use("/api/users", usersRoute);
+app.use("/api/events", eventsRoute);
+// app.use("/api/usersDetails", usersDetailsRoute);
+
 app.use('/api/receipts', receiptsRoute)
-app.use('/api/users', usersRoute);
-app.use('/api/events', eventsRoute);
+
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

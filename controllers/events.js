@@ -66,8 +66,12 @@ async function findBySearch(req,res) {
 
     try {
         const events = await Event.find({"name": {"$regex": searchResults, "$options": "i"}})
-        
+        if (events.length === 0) {
+            res.status(404).json({ "msg": "No search results found" })
+        }
+        else {
         res.json(events)
+        }
     } catch (error)
     {
         res.status(500).json({ message: 'Error retrieving events' });

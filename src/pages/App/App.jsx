@@ -15,6 +15,7 @@ import Category from "../../components/Category";
 import EventsByCategory from "../CategoriesPage/EventsByCategory";
 import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
+import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
 
 
 export const UserContext = createContext();

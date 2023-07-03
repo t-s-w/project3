@@ -6,13 +6,10 @@ import './config/db.js';
 import { fileURLToPath } from 'url';
 import eventsRoute from './routes/events.js'
 import usersRoute from './routes/users.js'
-// import usersDetailsRoute from "./routes/userDetails.js";
-import receiptsRoute from './routes/receipts.js'
-import cors from 'cors'
-import checkToken from './config/checkToken.js'
-
-
-
+import usersDetailsRoute from "./routes/userDetails.js";
+import receiptsRoute from "./routes/receipts.js";
+import cors from "cors";
+import checkToken from "./config/checkToken.js";
 
 // Always require and configure near the top
 const __filename = fileURLToPath(import.meta.url);
@@ -35,10 +32,9 @@ app.use(checkToken);
 
 // Put API routes here, before the "catch all" route
 
-
 app.use("/api/users", usersRoute);
 app.use("/api/events", eventsRoute);
-// app.use("/api/usersDetails", usersDetailsRoute);
+app.use("/api/userDetails", usersDetailsRoute);
 
 app.use('/api/receipts', receiptsRoute)
 

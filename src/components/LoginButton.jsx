@@ -38,7 +38,7 @@ export default function LoginButton() {
           >
             My Account
           </Link>
-          <Link to="" className="hover:bg-blue-400 hover:text-inherit">
+          <Link to="/purchasehistory" className="hover:bg-blue-400 hover:text-inherit">
             Purchase History
           </Link>
           <Link

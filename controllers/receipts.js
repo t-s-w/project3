@@ -47,6 +47,7 @@ export async function getReceiptsByUser(req,res) {
   }
   try {
     const receipts = await Receipt.find({customerId: userId}).populate('eventId');
+    receipts.sort((x,y) => y.createdAt > x.createdAt ? 1 : -1)
     res.json(receipts)
   } catch(err) {
     res.status(400).json({message:err.message})

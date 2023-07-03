@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import * as usersSvc from '../../utilities/users-service.js'
-import UserModal from "../UserDetailPage/UserDetailPage.jsx";
-
+import * as usersSvc from "../../utilities/users-service.js";
 import Debug from "debug";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +11,6 @@ export default function SignUpPage(props) {
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async function (evt) {
     evt.preventDefault();
@@ -34,7 +31,6 @@ export default function SignUpPage(props) {
 
       setTimeout(() => navigate("/user/details"), 2000);
     } catch (err) {
-      
       setErrorMsg(err.message);
       setFormState("idle");
     }
@@ -74,7 +70,6 @@ export default function SignUpPage(props) {
           {errorMsg && <p className="text-red-700">{errorMsg}</p>}
           {successMsg && <p className="text-green-700">{successMsg}</p>}
         </fieldset>
-        {showModal && <UserModal setSuccessMsg={setSuccessMsg} />}
       </form>
     </>
   );

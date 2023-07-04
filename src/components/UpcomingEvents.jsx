@@ -25,13 +25,15 @@ export default function UpcomingEvents ({events}) {
     return (
     <>
     Upcoming Events
-    {sortedEvents.slice(0,5).map(event => 
-    <div className="flex flex-wrap">
-    <div className="w-1/3 p-3" >
-    <img className="w-full h-40 object-cover" src={event?.images[0].url} />
-    <p>{event.name}</p>
+    <div className="flex flex-nowrap snap-x scroll-smooth slideshow-container">
+    {sortedEvents.slice(0,5).map((event, i) => 
+        <div className="w-1/3 p-3 mySlides fade" >
+            {/* <div class="numbertext">{i+1} / 5</div> */}
+            <img className="w-full h-48 object-cover" src={event?.images[0].url} />
+            <div class="text">{event.name}</div>
+        </div>
+    )}
     </div>
-    </div>)}
     </>
     )
 }

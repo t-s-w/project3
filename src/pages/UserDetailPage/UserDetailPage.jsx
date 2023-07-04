@@ -11,7 +11,7 @@ export default function UserDetailPage() {
   console.log(details);
 
   async function getOneUserDetail() {
-    const response = await fetch(`/api/userDetails/${id}`);
+    const response = await sendRequest(`/api/userDetails/getOneUser`);
     const jsonData = await response.json();
     setDetails(jsonData);
     console.log(jsonData);

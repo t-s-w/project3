@@ -2,6 +2,7 @@ import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 import Debug from 'debug'
 import { createRequire } from 'module';
+import UserDetail from '../models/UserDetail.js';
 const require = createRequire(import.meta.url);
 const bcrypt = require('bcrypt');
 
@@ -20,6 +21,12 @@ async function create(req, res) {
     try {
         const user = await User.create(req.body);
         const token = createJWT(user);
+        const response = await UserDetail.create({
+            name:'',
+            contactNo:0,
+            address:'',
+            customerId: user._id
+        })
         res.json(token);
     } catch (err) {
         if (err.message.match(/^E11000/)) {

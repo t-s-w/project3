@@ -26,7 +26,10 @@ async function findUserById(req, res) {
   try {
     const userDetail = await UserDetail.find({ customerId: userId });
     if (userDetail.length < 1) {
-      res.status(404).json({ msg: "Requested customerId not found" });
+      console.log('routed')
+      const newProfile = await UserDetail.create({customerId: userId})
+      res.json(newProfile);
+      return
     }
     res.json(userDetail[0]);
   } catch {

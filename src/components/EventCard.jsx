@@ -6,14 +6,13 @@ export default function EventCard({ event }) {
         weekday: "long",
         year: "numeric",
         month: "long",
-        day: "numeric",
-        timeZone: event?.date?.timezone,        
+        day: "numeric",       
       };
     const dateISO = event?.dates.start.dateTime;
     const dateObj = dateISO ? new Date(dateISO) : null;
     const dateStr = dateObj ? dateObj.toLocaleString("en-GB",options) : '';
     const timeStr = dateObj ? dateObj.toLocaleTimeString("en-US", { timeZone: event?._embedded?.venues[0]?.timezone, timeZoneName: "long" }) : '';
-    // console.log(dateStr);
+    
     return (
         <>
             <div className="w-1/3 p-3">

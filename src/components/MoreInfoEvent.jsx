@@ -3,8 +3,8 @@ export default function MoreInfoEvent(props) {
     
     return (props.trigger) ?  (
     <div className='popup'>
-        <div className='popup-inner'>
-            <button className='close-btn rounded-full p-0.5 bg-red-600 text-white' onClick={() => props.setTrigger(false)}>x</button>
+        <div className='popup-inner bg-white dark:bg-stone-700'>
+            <button className='close-btn rounded-lg' onClick={() => props.setTrigger(false)}>X</button>
             <p>Please note: {props.event?.pleaseNote}</p>
         
             <hr/>

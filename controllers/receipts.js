@@ -21,8 +21,19 @@ export async function purchase(req, res) {
 
 export async function cancel(req, res) {
   const id = req.params.id
+  const userId = req.user?._id
+  console.log('cancel attempt')
   try {
-    const response = await Receipt.deleteOne({ _id: id });
+    const receipt = await Receipt.findById(id);
+    if(!receipt) {
+      res.status(404).json({message: "Requested receipt id not found"})
+      return
+    }
+    if (!receipt.customerId.equals(userId)) {
+      res.status(403).json({message: "You are not authorised to make this request"})
+      return
+    }
+    const response = await Receipt.deleteOne({_id: id})
     res.json(response);
   } catch (err) {
     res.status(400).json({ message: err.message })

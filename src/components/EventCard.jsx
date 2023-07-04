@@ -7,13 +7,12 @@ export default function EventCard({ event }) {
         year: "numeric",
         month: "long",
         day: "numeric",
-        timeZone: "America/Indianapolis",
-        timeZoneName: "short"
+        timeZone: event?.date?.timezone,        
       };
     const dateISO = event?.dates.start.dateTime;
     const dateObj = dateISO ? new Date(dateISO) : null;
     const dateStr = dateObj ? dateObj.toLocaleString("en-GB",options) : '';
-    const timeStr = dateObj ? dateObj.toLocaleTimeString("en-US", { timeZone:"America/Indianapolis", timeZoneName: "short" }) : '';
+    const timeStr = dateObj ? dateObj.toLocaleTimeString("en-US", { timeZone: event?._embedded?.venues[0]?.timezone, timeZoneName: "long" }) : '';
     // console.log(dateStr);
     return (
         <>

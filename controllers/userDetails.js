@@ -1,20 +1,32 @@
 import User from "../models/User.js";
 import UserDetail from "../models/UserDetail.js";
 
-async function createUserDetails(req, res) {
+async function updateUserDetails(req, res) {
   try {
-    const { name, contactNo, address } = req.body;
+    const userId = req.user._id;
+    const existingUser = await UserDetail.find({ customerId: userId });
+    console.log(userId);
+    if (existingUser) {
+      const { name, contactNo, address, preferences } = req.body;
+      // const userDetail = ({
+      //   ...existingUser,
+      //   name: name,
+      //   contactNo: contactNo,
+      //   address: address,
+      //   preferences: preferences,
+      // });
+      const updatededUserDetail = await UserDetail.findOneAndUpdate(
+        { customerId: userId },
+        {
+          name: name,
+          contactNo: contactNo,
+          address: address,
+          preferences: preferences,
+        }
+      );
 
-    const userDetail = new UserDetail({
-      name,
-      contactNo,
-      address,
-      customerId: req.user._id,
-    });
-
-    const savedUserDetail = await userDetail.save();
-
-    res.status(201).json(savedUserDetail);
+      res.status(201).json("success");
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
@@ -29,10 +41,10 @@ async function findUserById(req, res) {
   try {
     const userDetail = await UserDetail.find({ customerId: userId });
     if (userDetail.length < 1) {
-      console.log('routed')
-      const newProfile = await UserDetail.create({customerId: userId})
+      console.log("routed");
+      const newProfile = await UserDetail.create({ customerId: userId });
       res.json(newProfile);
-      return
+      return;
     }
     res.json(userDetail[0]);
   } catch {
@@ -40,4 +52,4 @@ async function findUserById(req, res) {
   }
 }
 
-export { createUserDetails, findUserById };
+export { updateUserDetails as updateUserDetails, findUserById };

@@ -9,6 +9,9 @@ export default function UserDetailPage() {
   const { user } = useContext(UserContext);
   const [details, setDetails] = useState({});
   const [message, setMessage] = useState(false);
+  const [isModified, setIsModified] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   console.log(details);
 
   async function getOneUserDetail() {
@@ -18,7 +21,7 @@ export default function UserDetailPage() {
 
   useEffect(() => {
     getOneUserDetail().then(console.log);
-  }, []);
+  }, [success]);
 
   console.log(details);
 
@@ -33,11 +36,17 @@ export default function UserDetailPage() {
     try {
       const response = await sendRequest("/api/userDetails", "PATCH", formData);
       console.log(response); // Process the response data as needed
-      // setConfirmButton(false);
       setMessage(true);
+      setSuccess(!success);
+      setIsModified(false);
     } catch (error) {
       // Handle any errors that occur during the request
     }
+  };
+
+  const handleInputChange = () => {
+    setIsModified(true);
+    setMessage(false);
   };
 
   return (
@@ -60,6 +69,7 @@ export default function UserDetailPage() {
               type="text"
               name="name"
               placeholder={details.name}
+              onChange={handleInputChange} // Add onChange event handler to track input changes
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -70,6 +80,7 @@ export default function UserDetailPage() {
               minLength="8"
               name="contactNo"
               placeholder={details.contactNo}
+              onChange={handleInputChange} // Add onChange event handler to track input changes
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -79,9 +90,17 @@ export default function UserDetailPage() {
               type="text"
               name="address"
               placeholder={details.address}
+              onChange={handleInputChange} // Add onChange event handler to track input changes
             />
           </div>
-          <button className="w-fit bg-blue-800 font-bold">Confirm</button>
+          <button
+            className={`w-fit bg-blue-800 font-bold ${
+              !isModified ? "bg-slate-400" : ""
+            }`}
+            disabled={!isModified}
+          >
+            Confirm
+          </button>
           {message && (
             <div className="text-green-800">
               Your profile has been successfully updated.

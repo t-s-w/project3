@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import EventCard from "../../components/EventCard";
+import UpcomingEvents from "../../components/UpcomingEvents";
 
 export default function AllEventsPage() {
 
@@ -17,8 +18,10 @@ export default function AllEventsPage() {
     }, []);
 
 
+
     return (
         <>
+            <UpcomingEvents events={events}/>
             <h1 className="text-left text-2xl">Top events</h1>
             <div className="flex flex-wrap">
                 {events ? (

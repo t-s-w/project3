@@ -33,10 +33,8 @@ export default function EventDetailsPage() {
 
     return (
         <>
-            <p>id = {id}</p>
-
             {event.images && event.images.length > 0 ? (
-                <img src={event?.images[0]?.url} />
+                <img className="mt-2" src={event?.images[0]?.url} />
             ) : (
                 <img src="" alt="No image available" />
             )}

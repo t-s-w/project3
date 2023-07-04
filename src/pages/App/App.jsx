@@ -17,6 +17,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
 import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
+import ConfirmPurchasePage from '../ConfirmPurchasePage/ConfirmPurchasePage';
 
 
 export const UserContext = createContext();
@@ -45,6 +46,7 @@ function App() {
             <Route path="/user/password" element={<UserPasswordPage />} />
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
+            <Route path="/confirmPurchase" element={<ConfirmPurchasePage />} />
             <Route
               path="/events/categories/categories"
               element={<Categories />}

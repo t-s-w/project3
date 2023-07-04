@@ -27,6 +27,18 @@ const receiptSchema = new mongoose.Schema({
     customerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    deliveryName: {
+        type: String,
+        required: true
+    },
+    deliveryAddress: {
+        type: String,
+        required: true
+    },
+    deliveryContactNo: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true

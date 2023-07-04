@@ -5,7 +5,8 @@ export default function PurchaseCard({ receipt }) {
     const eventDateTime = (new Date(event.dates.start.dateTime))
     const eventDate = eventDateTime.toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
     const eventTime = eventDateTime.toLocaleTimeString('en-sg', { hour: 'numeric', minute: 'numeric', timeZone: event.dates.timezone })
-    return <div className="max-w-4xl w-full grid grid-cols-[2fr_8fr_2fr] text-left min-h-md border-double rounded-lg border-slate-500 border-4">
+    const gridLayout = receipt._id ? 'grid-cols-[2fr_8fr_2fr]' : 'grid-cols-[2fr_8fr]'
+    return <div className={`max-w-4xl w-full grid ${gridLayout} text-left min-h-md border-double rounded-lg border-slate-500 border-4`}>
         <div className="bg-cover bg-center" style={{ backgroundImage: `url('${event.images[0].url}')` }}></div>
         <div className="flex flex-col w-full [&>div]:p-4">
             <div className="flex flex-row w-full bg-blue-800 text-darkDefault text-sm" >
@@ -14,7 +15,7 @@ export default function PurchaseCard({ receipt }) {
             </div>
             <div className="w-full grid grid-cols-[3fr_1fr] bg-white text-lightDefault dark:text-darkDefault dark:bg-slate-800">
                 <div className="flex flex-col justify-end h-full">
-                    <p className="text-xs">Bought on {(new Date(receipt.createdAt)).toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
+                    {receipt.createdAt ? <p className="text-xs">Bought on {(new Date(receipt.createdAt)).toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p> : undefined}
                 </div>
                 <div className="text-center flex flex-col justify-center">
                     <p>Seats Booked:</p>
@@ -23,6 +24,6 @@ export default function PurchaseCard({ receipt }) {
             </div>
 
         </div>
-        <div className="border-l-[6px] border-double border-blue-800 w-full h-full bg-white flex place-items-center justify-center"><QRCode className="w-3/4 h-full" value={receipt._id} /></div>
+        {receipt._id && <div className="border-l-[6px] border-double border-blue-800 w-full h-full bg-white flex place-items-center justify-center"><QRCode className="w-3/4 h-full" value={receipt._id} /></div>}
     </div>
 }

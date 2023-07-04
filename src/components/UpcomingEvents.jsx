@@ -1,14 +1,19 @@
 export default function UpcomingEvents ({events}) {
-    const arrangedDate = events.sort(function(a,b){
+    const sortedEvents = events.sort(function(a,b){
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
-        return new Date(b.events?.dates?.start?.dateTime) - new Date(a.events?.dates?.start?.dateTime);
+        const dateObjA = new Date(a.dates?.start?.dateTime);
+        console.log("A", dateObjA)
+        const dateObjB = new Date(b.dates?.start?.dateTime);
+        console.log("B", dateObjB)
+        return dateObjA - dateObjB;
       });
-      console.log(arrangedDate);
+      console.log(sortedEvents);
+// console.log(events[0].dates.start.dateTime)
     return (
     <>
     Upcoming Events
-    {/* {eve} */}
+    {sortedEvents.slice(0,5).map(event => <p>{event.name}</p>)}
     </>
     )
 }

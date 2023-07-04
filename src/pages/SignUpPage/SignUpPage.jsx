@@ -16,6 +16,7 @@ export default function SignUpPage(props) {
     evt.preventDefault();
     if (evt.target.password.value !== evt.target.confirmPassword.value) {
       setErrorMsg("Passwords do not match");
+      return
     }
     try {
       setFormState("loading");

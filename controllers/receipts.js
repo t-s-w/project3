@@ -21,7 +21,8 @@ export async function purchase(req, res) {
 
 export async function verifyPurchase(req,res) {
   try {
-    if(!req.user) {res.status(401).json('Not logged in'); return}
+    if(!req.user) {res.status(401).json({message:'Not logged in'}); return}
+    res.json({message: 'logged in '})
   } catch(err) {
     res.status(400).json({message: err.message})
   }

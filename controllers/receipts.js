@@ -19,6 +19,14 @@ export async function purchase(req, res) {
   }
 }
 
+export async function verifyPurchase(req,res) {
+  try {
+    if(!req.user) {res.status(401).json('Not logged in'); return}
+  } catch(err) {
+    res.status(400).json({message: err.message})
+  }
+}
+
 export async function cancel(req, res) {
   const id = req.params.id
   const userId = req.user?._id

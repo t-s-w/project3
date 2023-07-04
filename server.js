@@ -35,7 +35,6 @@ app.use(checkToken);
 app.use("/api/users", usersRoute);
 app.use("/api/events", eventsRoute);
 app.use("/api/userDetails", usersDetailsRoute);
-
 app.use('/api/receipts', receiptsRoute)
 
 

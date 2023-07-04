@@ -8,6 +8,7 @@ export default function UserDetailPage() {
   console.log(id);
   const { user } = useContext(UserContext);
   const [details, setDetails] = useState({});
+  const [message, setMessage] = useState(false);
   console.log(details);
 
   async function getOneUserDetail() {
@@ -33,6 +34,7 @@ export default function UserDetailPage() {
       const response = await sendRequest("/api/userDetails", "PATCH", formData);
       console.log(response); // Process the response data as needed
       // setConfirmButton(false);
+      setMessage(true);
     } catch (error) {
       // Handle any errors that occur during the request
     }
@@ -80,6 +82,11 @@ export default function UserDetailPage() {
             />
           </div>
           <button className="w-fit bg-blue-800 font-bold">Confirm</button>
+          {message && (
+            <div className="text-green-800">
+              Your profile has been successfully updated.
+            </div>
+          )}
         </div>
       </form>
     </>

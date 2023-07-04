@@ -7,7 +7,6 @@ const require = createRequire(import.meta.url);
 dotenv.config();
 const bcrypt = require('bcrypt');
 
-
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 
 const Schema = mongoose.Schema;

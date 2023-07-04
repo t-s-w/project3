@@ -8,13 +8,6 @@ async function updateUserDetails(req, res) {
     console.log(userId);
     if (existingUser) {
       const { name, contactNo, address, preferences } = req.body;
-      // const userDetail = ({
-      //   ...existingUser,
-      //   name: name,
-      //   contactNo: contactNo,
-      //   address: address,
-      //   preferences: preferences,
-      // });
       const updatededUserDetail = await UserDetail.findOneAndUpdate(
         { customerId: userId },
         {

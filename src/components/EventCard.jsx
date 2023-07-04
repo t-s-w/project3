@@ -14,7 +14,7 @@ export default function EventCard({ event }) {
     const dateObj = dateISO ? new Date(dateISO) : null;
     const dateStr = dateObj ? dateObj.toLocaleString("en-GB",options) : '';
     const timeStr = dateObj ? dateObj.toLocaleTimeString("en-US", { timeZone:"America/Indianapolis", timeZoneName: "short" }) : '';
-    console.log(dateStr);
+    // console.log(dateStr);
     return (
         <>
             <div className="w-1/3 p-3">

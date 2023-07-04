@@ -50,10 +50,10 @@ export default function ConfirmPurchasePage() {
                     </fieldset>
                 </form>
             </div>
-            <div>
+            <div className="[&>*]:my-4">
                 <h2 className="text-3xl">Amount Due</h2>
                 <p className="text-2xl font-black">${verifiedPurchase.amountPaid}</p>
-                <button form="deliveryDetails" className="bg-blue-800 text-darkDefault hover:bg-blue-500 mt-10" >Confirm Purchase</button>
+                <button form="deliveryDetails" className="bg-blue-800 text-darkDefault hover:bg-blue-500" >Confirm Purchase</button>
             </div>
         </div>
         :

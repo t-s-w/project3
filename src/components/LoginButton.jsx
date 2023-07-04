@@ -37,7 +37,7 @@ export default function LoginButton() {
         <input type="checkbox" id="dropdown" className="hidden" />
         <div className="flex flex-col [&>a]:py-4 [&>a]:rounded-full border-box px-5 rounded-b-lg slide clear-both w-full h-0 top-10 overflow-hidden transition-[height] absolute bg-blue-800">
           <Link
-            to={`/user/${user?._id}`}
+            to={`/user/profile`}
             className="hover:bg-blue-400 hover:text-inherit"
           >
             My Account
@@ -62,8 +62,8 @@ export default function LoginButton() {
             Log out
           </Link>
         </div>
-        </div>
+      </div>
     ) : (
-        <NotLoggedIn />
+      <NotLoggedIn />
     );
 }

@@ -4,12 +4,12 @@ import { UserContext } from "../App/App";
 
 export default function UserPasswordPage() {
   const { user } = useContext(UserContext);
-  const [passwordEditable, setPasswordEditable] = useState(false);
+  const [passwordEdit, setPasswordEdit] = useState(false);
   const [save, setSave] = useState(false);
 
   function handleClick() {
     //patch password
-    setPasswordEditable(true);
+    setPasswordEdit(true);
     setSave(true);
     console.log("patch password");
   }
@@ -24,35 +24,33 @@ export default function UserPasswordPage() {
           {" "}
           <b>Your login details</b>
         </h1>
-        <fieldset className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
+        <div className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
           <div className="grid grid-cols-4 gap-5">
-            <label className="mb-2 text-left">Email</label>
-            <input
-              disabled
-              className="p-2 pl-4 col-span-2 border-solid border-2 rounded-full"
-              type="text"
-              name="email"
-              placeholder={user.email}
-            />
+            <div className="mb-2 text-left">Email</div>
+
+            <div />
+            {user.email}
           </div>
           <div className="grid grid-cols-4 gap-5">
-            <label className="mb-2 text-left">Password</label>{" "}
-            <input
-              disabled={!passwordEditable}
-              className="p-2 pl-4 col-span-2 border-solid border-2 rounded-full"
-              type="text"
-              minLength="8"
-              name="password"
-              placeholder="********"
-            />
-            <button
-              onClick={save ? handleSave : handleClick}
-              className="w-fit bg-blue-800 font-bold"
-            >
-              {save ? "Save" : "Change"}
-            </button>
+            <div className="mb-2 text-left">Password</div> <div />
+            *********
+            {passwordEdit ? (
+              <button
+                className="w-fit bg-blue-800 font-bold"
+                onClick={handleSave}
+              >
+                Save
+              </button>
+            ) : (
+              <button
+                className="w-fit bg-blue-800 font-bold"
+                onClick={handleClick}
+              >
+                Change
+              </button>
+            )}
           </div>
-        </fieldset>
+        </div>
       </div>
     </>
   );

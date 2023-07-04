@@ -30,7 +30,7 @@ export default function SignUpPage(props) {
       );
       setUser(user);
 
-      setTimeout(() => navigate("/user/details"), 2000);
+      setTimeout(() => navigate("/user/profile"), 2000);
     } catch (err) {
       setErrorMsg(err.message);
       setFormState("idle");

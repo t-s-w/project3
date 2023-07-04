@@ -12,14 +12,14 @@ export default function UserDetailPage() {
 
   async function getOneUserDetail() {
     const response = await sendRequest(`/api/userDetails/getOneUser`);
-    const jsonData = await response.json();
-    setDetails(jsonData);
-    console.log(jsonData);
+    setDetails(response);
   }
 
   useEffect(() => {
-    getOneUserDetail();
+    getOneUserDetail().then(console.log);
   }, []);
+
+  console.log(details);
 
   const handleSubmit = async function (evt) {
     evt.preventDefault();
@@ -30,7 +30,7 @@ export default function UserDetailPage() {
     };
 
     try {
-      const response = await sendRequest("/api/userDetails", "POST", formData);
+      const response = await sendRequest("/api/userDetails", "PATCH", formData);
       console.log(response); // Process the response data as needed
       // setConfirmButton(false);
     } catch (error) {
@@ -49,12 +49,15 @@ export default function UserDetailPage() {
         </h1>
         <div className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
           <div className="grid grid-cols-2 gap-4">
-            <label className="mb-2 text-left"> Name </label>
+            <label className="mb-2 text-left" value={details.name}>
+              {" "}
+              Name{" "}
+            </label>
             <input
               className="p-2 pl-4 border-solid border-2 rounded-full"
               type="text"
               name="name"
-              placeholder={user.name}
+              placeholder={details.name}
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -64,6 +67,7 @@ export default function UserDetailPage() {
               type="text"
               minLength="8"
               name="contactNo"
+              placeholder={details.contactNo}
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -72,6 +76,7 @@ export default function UserDetailPage() {
               className="p-2 pl-4 border-solid border-2 rounded-full"
               type="text"
               name="address"
+              placeholder={details.address}
             />
           </div>
           <button className="w-fit bg-blue-800 font-bold">Confirm</button>

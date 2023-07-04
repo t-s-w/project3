@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SeatSelector(props) {
   const navigate = useNavigate();
-  const { unavailableSeats, eventId, setBoughtReceipt } = props;
+  const { unavailableSeats, eventId } = props;
   const [selected, setSelected] = useState({ row: undefined, start: undefined, end: undefined })
   const [price, setPrice] = useState(0);
   const { user } = useContext(UserContext);

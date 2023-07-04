@@ -22,13 +22,13 @@ async function createUserDetails(req, res) {
 }
 
 async function findUserById(req, res) {
-  const { id } = req.params;
+  const userId = req.user._id;
   try {
-    const userDetail = await UserDetail.findUserById(id);
-    if (!userDetail) {
-      res.status(404).json({ msg: "Requested event id not found" });
+    const userDetail = await UserDetail.find({ customerId: userId });
+    if (userDetail.length < 1) {
+      res.status(404).json({ msg: "Requested customerId not found" });
     }
-    res.json(userDetail);
+    res.json(userDetail[0]);
   } catch {
     res.status(404).json({ msg: "Id not found!" });
   }

@@ -23,6 +23,9 @@ async function createUserDetails(req, res) {
 
 async function findUserById(req, res) {
   const userId = req.user._id;
+  if (!userId) {
+    res.status(401).json({ message: "Not logged in" });
+  }
   try {
     const userDetail = await UserDetail.find({ customerId: userId });
     if (userDetail.length < 1) {

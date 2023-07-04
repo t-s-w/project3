@@ -27,7 +27,10 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{ user, setUser }}>
-        <NavBar searchResults={searchResults} setSearchResults={setSearchResults}/>
+        <NavBar
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+        />
         <main className="flex flex-col justify-around flex-1">
           <Routes>
             <Route
@@ -38,13 +41,22 @@ function App() {
             <Route path="/events" element={<AllEventsPage />} />
             <Route path="/events/:id" element={<EventDetailsPage />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
-            <Route path="/user/details" element={<UserDetailPage />} />
+            <Route path="/user/:id" element={<UserDetailPage />} />
             <Route path="/user/password" element={<UserPasswordPage />} />
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
-            <Route path="/events/categories/categories" element={<Categories />} />
-            <Route path="/events/categories/categories/:categoryName" element={<EventsByCategory/>} />
-            <Route path="/events/search/:searchResults" element={<SearchResults searchResults={searchResults}/>}/>
+            <Route
+              path="/events/categories/categories"
+              element={<Categories />}
+            />
+            <Route
+              path="/events/categories/categories/:categoryName"
+              element={<EventsByCategory />}
+            />
+            <Route
+              path="/events/search/:searchResults"
+              element={<SearchResults searchResults={searchResults} />}
+            />
             <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
             <Route path="/purchasehistory" element={<PurchaseHistory />} />
           </Routes>

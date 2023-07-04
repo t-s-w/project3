@@ -1,7 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import sendRequest from "../../utilities/send-request";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../App/App";
 
 export default function UserDetailPage() {
-  // const [confirmButton, setConfirmButton] = useState(false);
+  const { id } = useParams();
+  console.log(id);
+  const { user } = useContext(UserContext);
+  const [details, setDetails] = useState({});
+  console.log(details);
+
+  async function getOneUserDetail() {
+    const response = await fetch(`/api/userDetails/${id}`);
+    const jsonData = await response.json();
+    setDetails(jsonData);
+    console.log(jsonData);
+  }
+
+  useEffect(() => {
+    getOneUserDetail();
+  }, []);
 
   const handleSubmit = async function (evt) {
     evt.preventDefault();
@@ -12,18 +30,10 @@ export default function UserDetailPage() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3001/api/userDetails`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const jsonData = await response.json();
-      console.log(jsonData); // Process the response data as needed
-      setConfirmButton(false);
+      const response = await sendRequest("/api/userDetails", "POST", formData);
+      console.log(response); // Process the response data as needed
+      // setConfirmButton(false);
     } catch (error) {
-      console.error(error);
       // Handle any errors that occur during the request
     }
   };
@@ -44,6 +54,7 @@ export default function UserDetailPage() {
               className="p-2 pl-4 border-solid border-2 rounded-full"
               type="text"
               name="name"
+              placeholder={user.name}
             />
           </div>
           <div className="grid grid-cols-2 gap-4">

@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
-
 import { useState, useContext } from "react";
 import { UserContext } from "../App/App";
-// import User from "../../../models/User";
 
-export default function UserPasswordPage(props) {
+export default function UserPasswordPage() {
   const { user } = useContext(UserContext);
   const [passwordEditable, setPasswordEditable] = useState(false);
   const [save, setSave] = useState(false);
@@ -51,7 +49,6 @@ export default function UserPasswordPage(props) {
               onClick={save ? handleSave : handleClick}
               className="w-fit bg-blue-800 font-bold"
             >
-              {" "}
               {save ? "Save" : "Change"}
             </button>
           </div>

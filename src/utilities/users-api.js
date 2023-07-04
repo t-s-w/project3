@@ -15,3 +15,4 @@ export function login(credentials) {
 export function checkToken() {
     return sendRequest(`api/users/check-token`);
   }
+  

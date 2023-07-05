@@ -1,6 +1,5 @@
 import { useState, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import SeatSelect from '../SeatSelect/SeatSelect'
 import AllEventsPage from '../AllEventsPage/AllEventsPage.jsx'
 import EventDetailsPage from '../EventDetailsPage/EventDetailsPage';
 import './App.css'
@@ -38,7 +37,6 @@ function App() {
               path="/"
               element={<AllEventsPage />}
             />
-            <Route path="/seatselect" element={<SeatSelect />} />
             <Route path="/events" element={<AllEventsPage />} />
             <Route path="/events/:id" element={<EventDetailsPage />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />

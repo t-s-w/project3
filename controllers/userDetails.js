@@ -15,8 +15,7 @@ async function updateUserDetails(req, res) {
           name: name,
           contactNo: contactNo,
           address: address,
-          preferences: preferences,
-          $push: { favourites: favourites },
+          $addToSet: { favourites: favourites },
         },
         { new: true } // Include the options object here
       );
@@ -34,17 +33,45 @@ async function findUserById(req, res) {
     res.status(401).json({ message: "Not logged in" });
   }
   try {
-    const userDetail = await UserDetail.find({ customerId: userId });
-    if (userDetail.length < 1) {
+    const userDetail = await UserDetail.findOne({ customerId: userId });
+    if (userDetail.length > 0) {
       console.log("routed");
+      console.log(userId);
       const newProfile = await UserDetail.create({ customerId: userId });
       res.json(newProfile);
       return;
     }
-    res.json(userDetail[0]);
+    res.json(userDetail);
   } catch {
     res.status(404).json({ msg: "Id not found!" });
   }
 }
 
-export { updateUserDetails as updateUserDetails, findUserById };
+async function getFavouritesById(req, res) {
+  const userId = req.user._id;
+  if (!userId) {
+    res.status(401).json({ message: "Not logged in" });
+  }
+  try {
+    const userDetail = await UserDetail.find({ customerId: userId });
+    if (userDetail) {
+      console.log("get favourites");
+      const userFavourites = await UserDetail.find(
+        { customerId: userId },
+        { favourites: 1 }
+      );
+      res.json(userFavourites[0].favourites);
+      console.log(userFavourites[0].favourites);
+      return;
+    }
+    res.json(userDetail);
+  } catch {
+    res.status(404).json({ msg: "Id not found!" });
+  }
+}
+
+export {
+  updateUserDetails as updateUserDetails,
+  findUserById,
+  getFavouritesById,
+};

@@ -55,7 +55,7 @@ export default function UpcomingEvents({ events }) {
             return (
               <div key={event.id} className="carousel-item">
                 <div className="w-full h-80 bg-center bg-cover carousel-bg" style={{ "--bg-img": `url("${widestImage(event)}"` }}>
-                  <div className="bg-gradient-to-t from-black via-black via-20% to-transparent to-50% w-full h-full flex flex-row items-end justify-between text-darkDefault">
+                  <div className="bg-gradient-to-t from-black via-black via-10% to-transparent to-50% w-full h-full flex flex-row items-end justify-between text-darkDefault">
                     <Link to={"/events/" + event?._id} className="font-black text-xl m-4">{event.name}</Link>
                     <p className=" text-xl m-4">{dateStr}</p>
                   </div>

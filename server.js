@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-// import favicon from 'serve-favicon';
+import favicon from 'serve-favicon';
 import logger from 'morgan';
 import './config/db.js';
 import { fileURLToPath } from 'url';
@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Configure both serve-favicon & static middleware
 // to serve from the production 'dist' folder
-// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, "dist")));
 
 // Middleware to verify token and assign user object of payload to req.user.

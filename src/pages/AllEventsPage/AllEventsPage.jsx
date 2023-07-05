@@ -21,8 +21,8 @@ export default function AllEventsPage() {
 
     return (
         <>
-            <UpcomingEvents events={events}/>
-            <h1 className="text-left text-2xl">Top events</h1>
+            <UpcomingEvents events={events} />
+            <h1 className="text-left text-2xl my-2">Top events</h1>
             <div className="flex flex-wrap">
                 {events ? (
                     events.map((event) => <EventCard event={event} key={event._id} />)

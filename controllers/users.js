@@ -80,9 +80,9 @@ function checkToken(req, res) {
         res.status(401).json({ message: "Incorrect password" });
       }
       if (match) {
-        // const newPassword = req.body.newPassword;
-        // const hashedPassword = await bcrypt.hash(newPassword, 10);
-        // await User.updateOne({ _id: userId }, { password: hashedPassword });
+        const newPassword = req.body.newPassword;
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await User.updateOne({ _id: userId }, { password: hashedPassword });
         res.json("Successfully updated password");
       }
     } catch (err) {

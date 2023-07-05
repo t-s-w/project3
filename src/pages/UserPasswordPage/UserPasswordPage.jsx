@@ -1,17 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../App/App";
+import sendRequest from "../../utilities/send-request";
 
 export default function UserPasswordPage() {
   const { user } = useContext(UserContext);
   const [passwordEdit, setPasswordEdit] = useState(false);
-  const [save, setSave] = useState(false);
   const [errMessage, setErrMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
+  // include if have time - show password as text when show button clicked
+  // const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  // const [showNewPassword, setShowNewPassword] = useState(false);
 
   function handleClick() {
     //patch password
     setPasswordEdit(true);
-    setSave(true);
+
     console.log("patch password");
   }
 
@@ -19,16 +23,20 @@ export default function UserPasswordPage() {
     evt.preventDefault();
     console.log(evt.target.elements.currentPassword.value);
     console.log(evt.target.elements.newPassword.value);
-    console.log("submit");
     const formData = {
       currentPassword: evt.target.elements.currentPassword.value,
       newPassword: evt.target.elements.newPassword.value,
     };
 
     try {
-      const response = await sendRequest("/api/user", "PATCH", formData);
+      const response = await sendRequest(
+        "/api/users/changePassword",
+        "PATCH",
+        formData
+      );
       console.log("success"); // Process the response data as needed
-      // setConfirmButton(false);
+      setPasswordEdit(false);
+      setSuccessMessage(true);
     } catch (error) {
       console.log("mismatched");
       setErrMessage(true);
@@ -50,13 +58,12 @@ export default function UserPasswordPage() {
         <div className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
           <div className="grid grid-cols-4 gap-5">
             <div className="mb-2 text-left">Email</div>
-
-            <div />
-            {user.email}
+            <div className="col-span-3 text-left">{user.email}</div>
           </div>
           <div className="grid grid-cols-4 gap-5">
-            <div className="mb-2 text-left">Password</div> <div />
-            *********
+            <div className="mb-2 text-left">Password</div>
+            <div className="col-span-3 text-left">*********</div>
+
             {passwordEdit ? (
               <form onSubmit={handleSubmit}>
                 <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -68,6 +75,7 @@ export default function UserPasswordPage() {
                       <label>Current password</label>
                       <input
                         name="currentPassword"
+                        type="password"
                         className="rounded-md bg text-sky-600 p-2 m-2"
                       ></input>
                     </div>
@@ -75,6 +83,7 @@ export default function UserPasswordPage() {
                       <label>New password</label>
                       <input
                         name="newPassword"
+                        type="password"
                         className="rounded-md bg text-sky-600 p-2 m-2 mb-10"
                       ></input>
                     </div>
@@ -104,9 +113,13 @@ export default function UserPasswordPage() {
               </button>
             )}
           </div>
+          {successMessage && (
+            <div className="text-green-800">
+              Your password has been updated!
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
-

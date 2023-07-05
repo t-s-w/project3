@@ -28,8 +28,8 @@ export default function UpcomingEvents ({events}) {
     
     
     <h2>Upcoming Events</h2>
-
-    <Carousel showThumbs={false} showStatus={false} showIndicators={false}>
+    <div className="">
+    <Carousel showThumbs={false} showStatus={true} showIndicators={false}>
         {sortedEvents.slice(0, 5).map((event, i) => {
           const dateISO = event?.dates?.start?.dateTime;
           const dateObj = dateISO ? new Date(dateISO) : null;
@@ -43,7 +43,7 @@ export default function UpcomingEvents ({events}) {
 
           return (
             <div key={event.id} className="carousel-item">
-              <img className="w-full h-48 object-cover" src={event?.images[0].url} alt={event.name} />
+              <img className="w-80 h-48 object-cover" src={event?.images[0].url} alt={event.name} />
               <p>{event.name}</p>
               <p>{dateStr}</p>
               <p>{timeStr}</p>
@@ -51,6 +51,7 @@ export default function UpcomingEvents ({events}) {
           );
         })}
       </Carousel>
+      </div>
     
     </>
     )

@@ -36,7 +36,7 @@ export default function AllEventsPage() {
             ):(
             ""
             )}
-            <h1 className="text-left text-2xl my-2">Top events</h1>
+            <h2 className="text-left text-1xl my-2 mb-4 font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Top events</h2>
             {loading ? (
                 renderLoading()
             ):(

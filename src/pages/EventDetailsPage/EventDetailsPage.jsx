@@ -12,25 +12,24 @@ export default function EventDetailsPage() {
     const [popoutVisible, setPopoutVisible] = useState(false);
 
     useEffect(() => {
-        async function fetchOneEvent() {
-            const response = await fetch(`/api/events/${id}`);
-            const jsonData = await response.json();
-            setEvent(jsonData);
-            console.log(jsonData);
-        }
-        fetchOneEvent();
-        console.log(event);
+      async function fetchOneEvent() {
+        const response = await fetch(`/api/events/${id}`);
+        const jsonData = await response.json();
+        setEvent(jsonData);
+        console.log("event", jsonData);
+      }
+      fetchOneEvent();
+      console.log("event", event);
     }, []);
 
     const dateISO = event?.dates?.start?.dateTime;
     const dateObj = dateISO ? new Date(dateISO) : null;
-    const dateStr = dateObj ? dateObj.toUTCString() : '';
+    const dateStr = dateObj ? dateObj.toUTCString() : "";
     // console.log(dateObj);
 
     const handleClick = () => {
-        navigate(`/events/${id}/order`);
+      navigate(`/events/${id}/order`);
     };
-
 
     return (
       <>
@@ -39,7 +38,7 @@ export default function EventDetailsPage() {
         ) : (
           <img src="" alt="No image available" />
         )}
-        <Favourites />
+        <Favourites event={event} />
         <p>{event?.name}</p>
         <p>{dateStr}</p>
         <p>

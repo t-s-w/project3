@@ -7,7 +7,8 @@ async function updateUserDetails(req, res) {
     const existingUser = await UserDetail.find({ customerId: userId });
     console.log(userId);
     if (existingUser) {
-      const { name, contactNo, address, preferences } = req.body;
+      const { name, contactNo, address, preferences, favourites } = req.body;
+      console.log(req.body);
       const updatededUserDetail = await UserDetail.findOneAndUpdate(
         { customerId: userId },
         {
@@ -15,9 +16,9 @@ async function updateUserDetails(req, res) {
           contactNo: contactNo,
           address: address,
           preferences: preferences,
+          favourites: favourites,
         }
       );
-
       res.status(201).json("success");
     }
   } catch (error) {
@@ -44,5 +45,7 @@ async function findUserById(req, res) {
     res.status(404).json({ msg: "Id not found!" });
   }
 }
+
+
 
 export { updateUserDetails as updateUserDetails, findUserById };

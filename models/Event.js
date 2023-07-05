@@ -10,7 +10,7 @@ const imageSchema = new mongoose.Schema({
 
 const classificationSchema = new mongoose.Schema({
     "primary": Boolean,
-    "segment":{
+    "segment": {
         "name": String
     },
     "genre": {
@@ -36,19 +36,36 @@ const venueSchema = new mongoose.Schema({
     "images": [imageSchema],
     "postalCode": String,
     "timezone": String,
-    "city": {"name": String},
-    "state": {"name": String, "stateCode": String}
+    "city": { "name": String },
+    "state": { "name": String, "stateCode": String }
+})
+
+const venueConfigSchema = new mongoose.Schema({
+    prices: {
+        type: [Number],
+        required: true,
+        validate: [(val) => val.length >= 4, "Must have minimum 4 prices"]
+    },
+    seats: {
+        type: [{
+            row: String,
+            count: Number,
+            grade: Number
+        }],
+        required: true
+    }
 })
 
 const productSchema = new mongoose.Schema({
     "name": String,
     "url": String,
-    "type": {type: String},
+    "type": { type: String },
     "classifications": [classificationSchema]
 })
 
 const eventSchema = new mongoose.Schema({
     "name": String,
+    "seatConfig": venueConfigSchema,
     "id": {
         type: String, require: true, unique: true
     },
@@ -96,9 +113,9 @@ const eventSchema = new mongoose.Schema({
     "_embedded": {
         "venues": [venueSchema],
         "attractions": [
-            {"id": String}
+            { "id": String }
         ]
     }
 })
 
-export default mongoose.model('Event',eventSchema)
+export default mongoose.model('Event', eventSchema)

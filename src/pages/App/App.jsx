@@ -17,6 +17,7 @@ import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
 import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
 import ConfirmPurchasePage from '../ConfirmPurchasePage/ConfirmPurchasePage';
+import VerifyReceiptPage from '../VerifyReceiptPage/VerifyReceiptPage.jsx';
 
 
 export const UserContext = createContext();
@@ -59,6 +60,7 @@ function App() {
             />
             <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
             <Route path="/purchasehistory" element={<PurchaseHistory />} />
+            <Route path="/verify/:id" element={<VerifyReceiptPage />} />
           </Routes>
         </main>
       </UserContext.Provider>

@@ -8,9 +8,8 @@ export default function UserDetailPage() {
   console.log(id);
   const { user } = useContext(UserContext);
   const [details, setDetails] = useState({});
-  const [message, setMessage] = useState(false);
-  const [isModified, setIsModified] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [isModified, setIsModified] = useState(false);
 
   console.log(details);
 
@@ -36,17 +35,16 @@ export default function UserDetailPage() {
     try {
       const response = await sendRequest("/api/userDetails", "PATCH", formData);
       console.log(response); // Process the response data as needed
-      setMessage(true);
-      setSuccess(!success);
+      setSuccess(true);
       setIsModified(false);
-    } catch (error) {
-      // Handle any errors that occur during the request
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
   const handleInputChange = () => {
     setIsModified(true);
-    setMessage(false);
+    setSuccess(false);
   };
 
   return (
@@ -101,7 +99,7 @@ export default function UserDetailPage() {
           >
             Confirm
           </button>
-          {message && (
+          {success && (
             <div className="text-green-800">
               Your profile has been successfully updated.
             </div>

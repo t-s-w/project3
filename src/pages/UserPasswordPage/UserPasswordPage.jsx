@@ -61,33 +61,35 @@ export default function UserPasswordPage() {
               <form onSubmit={handleSubmit}>
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                   <div className="fixed inset-0 bg-gray-900 bg-opacity-50"></div>
-                  <div className="bg-black p-6 rounded-lg z-10">
+                  <div className="bg-slate-800 p-6 rounded-lg z-10">
                     <h2 className="text-2xl font-bold mb-4">Change password</h2>
 
-                    <div className="bg white mb-4">
-                      <label>Current password </label>
+                    <div className=" mb-2">
+                      <label>Current password</label>
                       <input
                         name="currentPassword"
-                        className="rounded-md bg text-sky-600 p-2"
+                        className="rounded-md bg text-sky-600 p-2 m-2"
                       ></input>
-                      <label>New password </label>
+                    </div>
+                    <div className="ml-6">
+                      <label>New password</label>
                       <input
                         name="newPassword"
-                        className="rounded-md bg text-sky-600 p-2"
+                        className="rounded-md bg text-sky-600 p-2 m-2 mb-10"
                       ></input>
                     </div>
                     {errMessage && (
-                      <div className="text-red-800">
+                      <div className="mb-10 text-red-800">
                         Password mismatched. Please try again.
                       </div>
                     )}
                     <button
                       onClick={handleCancel}
-                      className="w-fit bg-blue-800 font-bold"
+                      className="w-fit bg-blue-800 font-bold m-2"
                     >
                       Cancel
                     </button>
-                    <button className="w-fit bg-blue-800 font-bold">
+                    <button className="w-fit bg-green-800 font-bold m-2">
                       Save
                     </button>
                   </div>

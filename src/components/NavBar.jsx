@@ -3,15 +3,15 @@ import LoginButton from './LoginButton.jsx';
 import { useRef, useState } from "react";
 
 export default function NavBar(props) {
-  
+
   const inputRef = useRef();
   const navigate = useNavigate();
   const handleSearch = async () => {
-          const searchQuery = inputRef.current.value; 
-          const response = await fetch(`/api/events/search/${searchQuery}`);
-          const jsonData = await response.json();
-          props.setSearchResults(jsonData);
-          navigate('/events/search/:searchResults', {state:{searchQuery: searchQuery}}) //, {state:{searchResults: searchResults, searchQuery: searchQuery}});
+    const searchQuery = inputRef.current.value;
+    const response = await fetch(`/api/events/search/${searchQuery}`);
+    const jsonData = await response.json();
+    props.setSearchResults(jsonData);
+    navigate('/events/search/:searchResults', { state: { searchQuery: searchQuery } }) //, {state:{searchResults: searchResults, searchQuery: searchQuery}});
   }
   return (
     <>
@@ -19,7 +19,7 @@ export default function NavBar(props) {
         <span className="font-['Merienda'] font-black italic text-2xl">
           <Link to="/">ticketmadam</Link>
         </span>
-        <ul className="pl-5 flex flex-row justify-end [&>*]:mx-8 flex-1">
+        <ul className="pl-5 flex flex-row justify-end items-center [&>*]:mx-8 flex-1">
           <li>
             <Link to="/events">Events</Link>
           </li>
@@ -33,7 +33,7 @@ export default function NavBar(props) {
               className="rounded-md bg text-sky-600 p-2"
               ref={inputRef}
             ></input>
-            <button onClick={handleSearch} className="bg text-white-600">
+            <button onClick={handleSearch} className="bg text-white-600 p-2">
               🔎
             </button>
           </li>

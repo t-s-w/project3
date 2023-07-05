@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export default function Category (props){
     
     return (
-    <div>
+    <div className="underline decoration-transparent transition duration-300 ease-in-out hover:decoration-inherit">
     <h2><Link 
     to={`/events/categories/categories/${props.categoryName}`}
     state={{categoryArray: props.categoryArray,

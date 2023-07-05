@@ -20,6 +20,7 @@ export default function Categories () {
     {Object.keys(categories).map(category => 
         
         <h2><Category categoryName={category} categoryArray={categories[category]}/></h2>
+        
         )}
     </>
     )

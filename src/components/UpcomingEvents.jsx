@@ -48,7 +48,9 @@ export default function UpcomingEvents({ events }) {
             const timeStr = dateObj
               ? dateObj.toLocaleTimeString('en-US', {
                 timeZone: event?._embedded?.venues[0]?.timezone,
-                timeZoneName: 'long',
+                timeZoneName: 'short',
+                hour: 'numeric',
+                minute: 'numeric'
               })
               : '';
 
@@ -57,7 +59,7 @@ export default function UpcomingEvents({ events }) {
                 <div className="w-full h-80 bg-center bg-cover carousel-bg" style={{ "--bg-img": `url("${widestImage(event)}"` }}>
                   <div className="bg-gradient-to-t from-black via-black via-10% to-transparent to-50% w-full h-full flex flex-row items-end justify-between text-darkDefault">
                     <Link to={"/events/" + event?._id} className="font-black text-xl m-4">{event.name}</Link>
-                    <p className=" text-xl m-4">{dateStr}</p>
+                    <p className=" text-xl m-4">{dateStr} {timeStr}</p>
                   </div>
 
                 </div>

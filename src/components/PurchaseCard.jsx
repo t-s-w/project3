@@ -24,6 +24,6 @@ export default function PurchaseCard({ receipt }) {
             </div>
 
         </div>
-        {receipt._id && <div className="border-l-[6px] border-double border-blue-800 w-full h-full bg-white flex place-items-center justify-center"><QRCode className="w-3/4 h-full" value={receipt._id} /></div>}
+        {receipt._id && <div className="border-l-[6px] border-double border-blue-800 w-full h-full bg-white flex place-items-center justify-center"><QRCode className="w-3/4 h-full" value={'https://ticketmadam.cyclic.app/verify/' + receipt._id} /></div>}
     </div>
 }

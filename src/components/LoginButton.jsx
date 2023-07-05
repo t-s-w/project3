@@ -6,7 +6,7 @@ import { logout } from "../utilities/users-service"
 import { Link, useLocation } from "react-router-dom";
 
 function NotLoggedIn() {
-  return <div className="relative w-60" >
+  return <div className="relative w-60 z-10" >
     <label htmlFor="dropdown"><span className="cursor-pointer bg-blue-600 hover:bg-blue-400 py-3 px-6 rounded-full">⌾ Log in</span></label>
     <input type="checkbox" id="dropdown" className="hidden" />
     <ul className="border-box px-5 rounded-b-lg slide clear-both w-full h-0 top-10 overflow-hidden transition-[height] absolute bg-blue-800">

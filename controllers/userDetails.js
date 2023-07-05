@@ -4,20 +4,22 @@ import UserDetail from "../models/UserDetail.js";
 async function updateUserDetails(req, res) {
   try {
     const userId = req.user._id;
-    const existingUser = await UserDetail.find({ customerId: userId });
+    const existingUser = await UserDetail.findOne({ customerId: userId });
     console.log(userId);
+    console.log(req.body);
     if (existingUser) {
-      const { name, contactNo, address, preferences } = req.body;
-      const updatededUserDetail = await UserDetail.findOneAndUpdate(
+      const { name, contactNo, address, preferences, favourites } = req.body;
+      await UserDetail.findOneAndUpdate(
         { customerId: userId },
         {
           name: name,
           contactNo: contactNo,
           address: address,
           preferences: preferences,
-        }
+          $push: { favourites: favourites },
+        },
+        { new: true } // Include the options object here
       );
-
       res.status(201).json("success");
     }
   } catch (error) {

@@ -26,7 +26,9 @@ export default function NavBar(props) {
           <li>
             <Link to="/events/categories/categories">Categories</Link>
           </li>
-          <li>For you</li>
+          <li>
+            <Link to="/foryou">For you</Link>
+          </li>
           <li>
             <input
               placeholder="Search here"

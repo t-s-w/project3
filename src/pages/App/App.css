@@ -42,3 +42,36 @@
 .read-the-docs {
   color: #888;
 }
+
+.star-button {
+  border: none;
+  background-color: transparent;
+  color: gold;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+}
+
+.star-button::before,
+.star-button::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  border-width: 0 12px 24px 12px;
+}
+
+.star-button::before {
+  bottom: 0;
+  border-color: transparent transparent gold transparent;
+}
+
+.star-button::after {
+  top: 0;
+  border-color: gold transparent transparent transparent;
+}

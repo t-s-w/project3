@@ -6,23 +6,23 @@ const userDetailSchema = new Schema(
   {
     name: {
       type: String,
-      default: ""
+      default: "",
     },
     contactNo: {
       type: String,
-      default: ""
+      default: "",
     },
     address: {
       type: String,
-      default: ""
+      default: "",
     },
     customerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       unique: true,
     },
-    preferences: {type:String,
-    default: ""}
+    preferences: { type: String, default: "" },
+    favourites: { type: Array, default: [] },
   },
   {
     timestamps: true,

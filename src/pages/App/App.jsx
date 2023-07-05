@@ -36,7 +36,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<h1>The quick brown fox jumps over the lazy dog</h1>}
+              element={<AllEventsPage />}
             />
             <Route path="/seatselect" element={<SeatSelect />} />
             <Route path="/events" element={<AllEventsPage />} />

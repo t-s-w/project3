@@ -13,7 +13,7 @@ export default function Favourites({ event }) {
 
     try {
       const response = await sendRequest("/api/userDetails", "PATCH", {
-        $push: { favorites: eventId },
+        favourites: eventId,
       });
       console.log(response); // Process the response data as needed
       setSuccess(true);

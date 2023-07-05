@@ -22,13 +22,7 @@ const userDetailSchema = new Schema(
       unique: true,
     },
     preferences: { type: String, default: "" },
-    favorites: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Event",
-        unique: true,
-      },
-    ],
+    favourites: { type: Array, default: [] },
   },
   {
     timestamps: true,

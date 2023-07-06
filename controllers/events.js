@@ -62,10 +62,10 @@ async function getAllCategories(req, res) {
 }
 
 async function findBySearch(req,res) { 
-    const { searchResults } = req.params;
-
+    // const searchResults = req.url.substring(req.url.lastIndexOf("/") + 1);
+    const {searchResults} = req.params;
+    console.log(req.params)
     try {
-        // const events = await Event.find({"name": {"$regex": searchResults, "$options": "i"}})
         const events = await Event.find( {$or: [{"name": {"$regex": searchResults, "$options": "i"}},{ 'classifications.segment.name': {"$regex": searchResults, "$options": "i"} }]} )
         if (events.length === 0) {
             res.status(404).json({ "msg": "No search results found" })

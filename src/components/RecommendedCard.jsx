@@ -1,4 +1,4 @@
-import starImage from "../../dist/star.png";
+// import starImage from "../../dist/star.png";
 
 export default function Recommended(props) {
   const { favourites, details } = props;

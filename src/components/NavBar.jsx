@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import LoginButton from './LoginButton.jsx';
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function NavBar(props) {
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef();
   const navigate = useNavigate();
   const handleSearch = async () => {
@@ -11,8 +11,19 @@ export default function NavBar(props) {
     const response = await fetch(`/api/events/search/${searchQuery}`);
     const jsonData = await response.json();
     props.setSearchResults(jsonData);
-    navigate(`/events/search/${searchQuery}`, { state: { searchQuery: searchQuery } }) //, {state:{searchResults: searchResults, searchQuery: searchQuery}});
+    navigate(`/events/search/${searchQuery}`, { state: { searchQuery: searchQuery } })
   }
+  // const handleChange = async (event) => {
+  //   let searchQuery;
+  //   if (event.target.value) {
+  //     searchQuery = {keyword: event.target.value}
+  //   }else {
+  //     searchQuery = undefined;
+  //   }
+  //   setSearchParams(searchQuery, {replace:true})
+  //   }
+
+  
   return (
     <>
       <nav className="px-5 flex  bg-blue-800 py-5 rounded-b-md text-darkDefault font-extrabold place-items-center [&>:first-child]:mr-auto  ">
@@ -31,9 +42,11 @@ export default function NavBar(props) {
           </li>
           <li>
             <input
+              value = {searchParams.keyword}
               placeholder="Search here"
               className="rounded-md bg text-sky-600 p-2"
               ref={inputRef}
+              // onChange={handleChange}
             ></input>
             <button onClick={handleSearch} className="bg text-white-600 p-2">
               🔎

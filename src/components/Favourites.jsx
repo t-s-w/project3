@@ -1,4 +1,4 @@
-import starImage from "../../dist/star.png";
+const starImage = ''
 import { UserContext } from "../pages/App/App";
 import { useContext, useState } from "react";
 import sendRequest from "../utilities/send-request";
@@ -12,7 +12,7 @@ export default function Favourites({ event }) {
   const handleClick = async function () {
     try {
       const response = await sendRequest("/api/userDetails", "PATCH", {
-        favourites: event,
+        favourites: event._id,
       });
       console.log(response); // Process the response data as needed
       setSuccess(true);

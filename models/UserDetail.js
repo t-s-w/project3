@@ -21,7 +21,12 @@ const userDetailSchema = new Schema(
       ref: "User",
       unique: true,
     },
-    favourites: { type: Array, default: [] },
+    favourites: {
+      type: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event"
+      }], default: []
+    },
   },
   {
     timestamps: true,

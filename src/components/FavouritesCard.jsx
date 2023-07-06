@@ -1,4 +1,4 @@
-import starImage from "../../dist/star.png";
+const starImage = ""
 
 export default function FavouritesCard(props) {
   const { favourites, details } = props;

@@ -13,12 +13,20 @@ export default function EventCard({ event }) {
     const dateStr = dateObj ? dateObj.toLocaleString("en-GB", options) : '';
     const timeStr = dateObj ? dateObj.toLocaleTimeString("en-US", { timeZone: event?._embedded?.venues[0]?.timezone, timeZoneName: "short", hour: "numeric", minute: "numeric" }) : '';
 
+    const widestImage = function (event) {
+      const images = event.images
+      if (!images || !images.length) return undefined
+      const widths = images.map(img => img.width)
+      const index = widths.indexOf(Math.max(...widths))
+      // console.log(index, images)
+      return images[index].url
+    }
     return (
       <>
         <div className="w-1/3 p-3">
           <img
             className="w-full h-40 object-cover"
-            src={event?.images[0].url}
+            src={widestImage(event)}
           />
           <Link to={`/events/${event?._id}`} className="font-bold">
             {event?.name}

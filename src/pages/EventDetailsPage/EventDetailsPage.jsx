@@ -36,7 +36,7 @@ export default function EventDetailsPage() {
       if (!images || !images.length) return undefined
       const widths = images.map(img => img.width)
       const index = widths.indexOf(Math.max(...widths))
-      console.log(index, images)
+      console.log("index", index, images)
       return images[index].url
     }
   

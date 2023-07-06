@@ -55,7 +55,8 @@ export default function EventDetailsPage() {
         <Favourites event={event} />
         <div className="place-self-center ml-4">
         <p className="text-2xl font-medium text-gray-900 dark:text-white underline decoration-blue-500">{event?.name}</p>
-        <p>{dateStr}</p>
+        {event?.dates?.start?.dateTime ? (<p>{dateStr}</p>):(<p>Date & time to be announced</p>)}
+        
         <p>
           {event?._embedded?.venues[0].name},{" "}
           {event?._embedded?.venues[0].city.name},{" "}

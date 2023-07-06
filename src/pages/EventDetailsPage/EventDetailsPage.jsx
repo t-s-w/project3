@@ -1,35 +1,44 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MoreInfoEvent from "../../components/MoreInfoEvent";
-import Favourites from "../../components/Favourites";
+import Favourites from "../../components/AddToFavourite";
+import sendRequest from "../../utilities/send-request";
 
 export default function EventDetailsPage() {
-    const { id } = useParams();
-    const [event, setEvent] = useState({});
-    const navigate = useNavigate();
+  const { id } = useParams();
+  const [event, setEvent] = useState({});
+  const navigate = useNavigate();
+  const [favourites, setFavourites] = useState({});
 
+  const [popoutVisible, setPopoutVisible] = useState(false);
 
-    const [popoutVisible, setPopoutVisible] = useState(false);
+  async function getFavourites() {
+    const response = await sendRequest(`/api/userDetails/getOneUser`);
+    setFavourites(response.favourites);
+    console.log(response.favourites);
+  }
+  async function fetchOneEvent() {
+    const response = await fetch(`/api/events/${id}`);
+    const jsonData = await response.json();
+    setEvent(jsonData);
+    console.log("event", jsonData);
+  }
 
-    useEffect(() => {
-      async function fetchOneEvent() {
-        const response = await fetch(`/api/events/${id}`);
-        const jsonData = await response.json();
-        setEvent(jsonData);
-        console.log("event", jsonData);
-      }
-      fetchOneEvent();
-      console.log("event", event);
-    }, []);
+  useEffect(() => {
+    fetchOneEvent();
+    getFavourites();
+    console.log("event", event);
+  }, []);
 
-    const dateISO = event?.dates?.start?.dateTime;
-    const dateObj = dateISO ? new Date(dateISO) : null;
-    const dateStr = dateObj ? dateObj.toUTCString() : "";
-    // console.log(dateObj);
+  const dateISO = event?.dates?.start?.dateTime;
+  const dateObj = dateISO ? new Date(dateISO) : null;
+  const dateStr = dateObj ? dateObj.toUTCString() : "";
+  // console.log(dateObj);
 
-    const handleClick = () => {
-      navigate(`/events/${id}/order`);
-    };
+  console.log("fav", favourites);
+  const handleClick = () => {
+    navigate(`/events/${id}/order`);
+  };
 
     const widestImage = function (event) {
       const images = event.images
@@ -52,7 +61,11 @@ export default function EventDetailsPage() {
           <img src="" alt="No image available" />
         )}
         </div>
-        <Favourites event={event} />
+        <Favourites
+        setFavourites={setFavourites}
+        favourites={favourites}
+        event={event}
+      />
         <div className="place-self-center ml-4">
         <p className="text-2xl font-medium text-gray-900 dark:text-white underline decoration-blue-500">{event?.name}</p>
         {event?.dates?.start?.dateTime ? (<p>{dateStr}</p>):(<p>Date & time to be announced</p>)}
@@ -74,9 +87,9 @@ export default function EventDetailsPage() {
           trigger={popoutVisible}
           setTrigger={setPopoutVisible}
         />
-
-        
-      </>
-    );
-
+      <button className="rounded-full m-5 bg-blue-500" onClick={handleClick}>
+        Purchase
+      </button>
+    </>
+  );
 }

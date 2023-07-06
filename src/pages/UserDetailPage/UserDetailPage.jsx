@@ -66,7 +66,7 @@ export default function UserDetailPage() {
               className="p-2 pl-4 border-solid border-2 rounded-full"
               type="text"
               name="name"
-              placeholder={details.name}
+              defaultValue={details.name}
               onChange={handleInputChange} // Add onChange event handler to track input changes
             />
           </div>
@@ -77,7 +77,7 @@ export default function UserDetailPage() {
               type="text"
               minLength="8"
               name="contactNo"
-              placeholder={details.contactNo}
+              defaultValue={details.contactNo}
               onChange={handleInputChange} // Add onChange event handler to track input changes
             />
           </div>
@@ -87,14 +87,13 @@ export default function UserDetailPage() {
               className="p-2 pl-4 border-solid border-2 rounded-full"
               type="text"
               name="address"
-              placeholder={details.address}
+              defaultValue={details.address}
               onChange={handleInputChange} // Add onChange event handler to track input changes
             />
           </div>
           <button
-            className={`w-fit bg-blue-800 font-bold ${
-              !isModified ? "bg-slate-400" : ""
-            }`}
+            className={`w-fit bg-blue-800 font-bold ${!isModified ? "bg-slate-400" : ""
+              }`}
             disabled={!isModified}
           >
             Confirm

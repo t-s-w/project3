@@ -13,7 +13,7 @@ export default function Category(props) {
 
     return (
         <Link
-            className="categoryContainer w-1/2 h-48 flex flex-col justify-center items-center bg-center bg-cover text-center"
+            className="categoryContainer w-1/2 h-60 flex flex-col justify-center items-center bg-center bg-cover text-center"
             to={`/events/categories/categories/${props.categoryName}`}
             style={{ "--bg-img": `url(${images[props.categoryName]})` }}
             state={{

@@ -28,7 +28,7 @@ export default function EventCard({ event }) {
             {event?._embedded.venues[0]?.state?.name}
           </p>
           <p>
-            {dateStr} {timeStr}
+          {event?.dates?.start?.dateTime ? (<p>{dateStr} {timeStr}</p>):(<p>Date & time to be announced</p>)}
           </p>
         
         </div>

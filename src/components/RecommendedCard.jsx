@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./recommendedcard.css";
 
 export default function RecommendedCard(recommended) {
   return (

@@ -1,0 +1,7 @@
+.media-scroller {
+    display: grid;
+    grid-auto-flow: column;
+  }
+  
+
+  

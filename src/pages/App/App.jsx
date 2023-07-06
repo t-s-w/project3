@@ -10,10 +10,8 @@ import { getUser } from "../../utilities/users-service";
 import LoginForm from "../../components/LoginForm.jsx";
 import OrderPage from "../OrderPage/OrderPage";
 import Categories from '../CategoriesPage/CategoriesPage';
-import Category from '../../components/Category';
 import EventsByCategory from '../CategoriesPage/EventsByCategory';
 import SearchResults from '../SearchResults/SearchResults';
-import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
 import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
 import ConfirmPurchasePage from '../ConfirmPurchasePage/ConfirmPurchasePage';
@@ -60,8 +58,6 @@ function App() {
             <Route path="/login" element={<LoginForm setUser={setUser} />} />
             <Route path="/events/:id/order" element={<OrderPage />} />
             <Route path="/confirmPurchase" element={<ConfirmPurchasePage />} />
-
-            <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
             <Route path="/purchasehistory" element={<PurchaseHistory />} />
             <Route path="/verify/:id" element={<VerifyReceiptPage />} />
           </Routes>

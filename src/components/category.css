@@ -4,4 +4,6 @@
 
 .categoryContainer:hover {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0.9) 55%, rgba(0, 0, 0, 0.5)), var(--bg-img);
+    background-size: cover;
+    background-position: center;
 }

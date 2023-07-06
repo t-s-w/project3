@@ -18,7 +18,10 @@ export default function LoginForm() {
             setError(null)
             const user = await usersSvc.login(credentials);
             setSuccessMsg('Successfully logged in!')
-            setTimeout(() => { setUser(user); navigate('/events') }, 2000);
+            setTimeout(() => {
+              setUser(user);
+              navigate("/foryou");
+            }, 2000);
         } catch (err) {
             setFormState('idle')
             setError(err.message)

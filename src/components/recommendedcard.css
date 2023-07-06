@@ -1,0 +1,55 @@
+.media-scroller{
+    display:grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 28%;
+    gap: var(--size-2);
+
+    overflow-x:auto;
+    overscroll-behavior-inline: contain;
+}
+
+.media-scroller.scrollable {
+    overflow-x: auto; /* Enable horizontal scrolling when the class is applied */
+  }
+
+  .media-scroller::-webkit-scrollbar {
+    height:10px;
+  }
+  
+  .media-scroller::-webkit-scrollbar-track {
+    background-color: #ffffff; /* Set the background color of the scroll bar track */
+    width: 2px;
+  }
+  
+  .media-scroller::-webkit-scrollbar-thumb {
+    background-color: #000dff; /* Set the color of the scroll bar thumb */
+    border-radius: 5px; /* Set the border radius of the scroll bar thumb */
+    height: 10px;
+  }
+  
+  .media-scroller::-webkit-scrollbar-thumb:hover {
+    background-color: #6889ff; /* Set the color of the scroll bar thumb on hover */
+  }
+
+.image {
+   inline-size: 100%; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    object-fit: cover; /* Adjust how the image fills the dimensions */
+    padding: 10px;
+    transition: transform 0.2s;
+  }
+
+
+.image:hover {
+    transform: scale(1.2); /* Increase the size by 10% (1.1 times) */
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var (--size-2);
+    background: var(--surface-2);
+  }
+  

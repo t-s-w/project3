@@ -40,10 +40,14 @@ export async function verifyPurchase(req, res) {
   try {
     if (!req.user) { res.status(401).json({ message: 'Not logged in' }); return }
 
-    if (!req.body.row || !req.body.startSeat || !req.body.endSeat || !req.body.eventId) { res.status(400).json({ message: "Invalid request" }); return }
+    if (!req.body.row || !req.body.startSeat || !req.body.endSeat || !req.body.eventId || (req.body.startSeat > req.body.endSeat)) { res.status(400).json({ message: "Invalid request" }); return }
 
     const checkEvent = await Event.findById(req.body.eventId)
     if (!checkEvent) { res.status(400).json({ message: "Event id not found" }); return }
+
+    const seatConfig = checkEvent.seatConfig.seats.find(x => x.row = req.body.row)
+    if (!seatConfig) { res.status(400).json({ message: "Invalid request" }) }
+    if (req.body.startSeat < 1 || (req.body.endSeat > seatConfig.count)) { res.status(400).json({ message: "Invalid request" }) }
 
     const pastReceipts = await Receipt.find({ eventId: req.body.eventId, row: req.body.row })
     for (let receipt of pastReceipts) {

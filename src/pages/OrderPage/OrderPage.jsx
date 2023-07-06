@@ -41,7 +41,7 @@ export default function OrderPage() {
         <h2 className="font-bold"><u>Select your seats</u></h2>
         <p><i>Seating plan for {event?._embedded?.venues[0].name}</i></p>
       </div>
-      <SeatSelector unavailableSeats={unavailableSeats} eventId={id} />
+      <SeatSelector unavailableSeats={unavailableSeats} eventId={id} config1={event.seatConfig?.seats} prices={event.seatConfig?.prices} />
 
     </>
   );

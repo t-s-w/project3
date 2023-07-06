@@ -57,9 +57,10 @@ export default function ForYouPage() {
     renderLoading()
   ) : (
     <>
-      <h1 className="text-l font-bold m-10">
-        <div> Welcome back, {details.name}! </div>
-      </h1>
+      <div className="text-4xl font-bold text-cente m-10">
+        ༻─━─━ Welcome back, {details.name}! ━─━─༺
+      </div>
+
       <Favourites details={details} favourites={favourites} />
       <Recommended details={details} favourites={favourites} />
     </>

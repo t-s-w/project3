@@ -7,7 +7,7 @@ export default function Favourites(props) {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center my-10">
         <img src={"/star.png"} alt="Star" className="h-20 w-20 mb-4" />
         <h2 className="text-2xl font-extrabold text-left mb-4">
           {details.name}'s favorited events:

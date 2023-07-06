@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+// import starImage from "../../dist/star.png";
 
 export default function Recommended(props) {
   const { favourites, details } = props;

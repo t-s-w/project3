@@ -64,6 +64,7 @@ async function getAllCategories(req, res) {
   }
 }
 
+<<<<<<< HEAD
 async function findBySearch(req, res) {
   const { searchResults } = req.params;
 
@@ -84,6 +85,23 @@ async function findBySearch(req, res) {
       res.status(404).json({ msg: "No search results found" });
     } else {
       res.json(events);
+=======
+async function findBySearch(req,res) { 
+    // const searchResults = req.url.substring(req.url.lastIndexOf("/") + 1);
+    const {searchResults} = req.params;
+    console.log(req.params)
+    try {
+        const events = await Event.find( {$or: [{"name": {"$regex": searchResults, "$options": "i"}},{ 'classifications.segment.name': {"$regex": searchResults, "$options": "i"} }]} )
+        if (events.length === 0) {
+            res.status(404).json({ "msg": "No search results found" })
+        }
+        else {
+        res.json(events)
+        }
+    } catch (error)
+    {
+        res.status(500).json({ message: 'Error retrieving events' });
+>>>>>>> ilyas
     }
   } catch (error) {
     res.status(500).json({ message: "Error retrieving events" });

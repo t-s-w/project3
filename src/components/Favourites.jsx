@@ -1,3 +1,5 @@
+// import starImage from "../../dist/star.png";
+const starImage = "";
 import { UserContext } from "../pages/App/App";
 import { useContext, useState } from "react";
 import sendRequest from "../utilities/send-request";

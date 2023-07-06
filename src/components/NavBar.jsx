@@ -3,9 +3,10 @@ import LoginButton from './LoginButton.jsx';
 import { useEffect, useRef, useState } from "react";
 
 export default function NavBar(props) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef();
   const navigate = useNavigate();
+
   const handleSearch = async () => {
     const searchQuery = inputRef.current.value;
     const response = await fetch(`/api/events/search/${searchQuery}`);

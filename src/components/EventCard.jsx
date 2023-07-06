@@ -24,12 +24,12 @@ export default function EventCard({ event }) {
     return (
       <>
         <div className="w-1/3 p-3">
+          
+          <Link to={`/events/${event?._id}`} className="font-bold">
           <img
             className="w-full h-40 object-cover"
             src={widestImage(event)}
-          />
-          <Link to={`/events/${event?._id}`} className="font-bold">
-            {event?.name}
+          />{event?.name}
           </Link>
           <p>
             {event?._embedded.venues[0]?.city?.name},{" "}

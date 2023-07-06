@@ -14,7 +14,7 @@ export default function UpcomingEvents({ events }) {
     // console.log("B", dateObjB)
     return dateObjA - dateObjB;
   });
-  console.log(sortedEvents);
+//   console.log("sorted",sortedEvents);
 
   const options = {
     weekday: "long",
@@ -29,7 +29,7 @@ export default function UpcomingEvents({ events }) {
     if (!images || !images.length) return undefined
     const widths = images.map(img => img.width)
     const index = widths.indexOf(Math.max(...widths))
-    console.log(index, images)
+    // console.log(index, images)
     return images[index].url
   }
 
@@ -56,7 +56,7 @@ export default function UpcomingEvents({ events }) {
 
             return (
               <div key={event.id} className="carousel-item">
-                <div className="w-full h-80 bg-center bg-cover carousel-bg" style={{ "--bg-img": `url("${widestImage(event)}"` }}>
+                <div className="w-full h-96 bg-center bg-cover carousel-bg" style={{ "--bg-img": `url("${widestImage(event)}"` }}>
                   <div className="bg-gradient-to-t from-black via-black via-10% to-transparent to-50% w-full h-full flex flex-row items-end justify-between text-darkDefault">
                     <Link to={"/events/" + event?._id} className="font-black text-xl m-4">{event.name}</Link>
                     <p className=" text-xl m-4">{dateStr} {timeStr}</p>

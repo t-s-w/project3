@@ -12,8 +12,8 @@ export default function OrderPage() {
 
   const dateTime = event?.dates?.start?.dateTime;
   const eventDateTime = (new Date(dateTime))
-  const eventDate = eventDateTime.toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-  const eventTime = eventDateTime.toLocaleTimeString('en-sg', { hour: 'numeric', minute: 'numeric' })
+  const eventDate = dateTime ? eventDateTime.toLocaleDateString('en-sg', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : "No specific date"
+  const eventTime = dateTime ? eventDateTime.toLocaleTimeString('en-sg', { hour: 'numeric', minute: 'numeric' }) : null
 
   useEffect(() => {
     async function fetchPurchasingEvent() {
@@ -29,20 +29,20 @@ export default function OrderPage() {
   }, []);
 
   return (
-    <>
-      <h1 className="text-2xl m-5">
+    <div className="flex flex-col">
+      <h1 className="text-2xl mt-5">
         You are currently purchasing <b>{event?.name}</b> tickets
       </h1>
-      <div className="text-left m-5">
+      <div className="text-left my-2">
         <u className="font-bold">Event details</u> <div>Date: {eventDate}</div>{" "}
-        <div>Time: {eventTime}</div>
+        {eventTime ? <div>Time: {eventTime}</div> : null}
       </div>
-      <div className="text-left m-5">
+      <div className="text-left my-2">
         <h2 className="font-bold"><u>Select your seats</u></h2>
         <p><i>Seating plan for {event?._embedded?.venues[0].name}</i></p>
       </div>
       <SeatSelector unavailableSeats={unavailableSeats} eventId={id} config1={event.seatConfig?.seats} prices={event.seatConfig?.prices} />
 
-    </>
+    </div>
   );
 }

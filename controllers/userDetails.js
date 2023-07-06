@@ -57,8 +57,7 @@ async function getFavouritesById(req, res) {
     if (userDetail) {
       console.log("get favourites");
       const userFavourites = await UserDetail.find(
-        { customerId: userId },
-        { favourites: 1 }
+        { customerId: userId }
       ).populate('favourites');
       res.json(userFavourites[0].favourites);
       return;

@@ -30,12 +30,12 @@ export default function AddToFavourite({ event, favourites }) {
 
   return (
     user && (
-      <div className="flex justify-end">
+      <div className="flex justify-end items-center">
         <button
           onClick={handleClick}
-          className="bg-transparent flex items-center"
+          className="bg-transparent m-2 p-2 flex items-center w-fit h-fit"
         >
-          <img src={"/star.png"} alt="Star" className="h-10 w-10" />
+          <img src={"/star.png"} alt="Star" title="Add to favourites" className="h-10 w-10" />
         </button>
         {success && (
           <div className="fixed inset-0 flex items-center justify-center z-50">

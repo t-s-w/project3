@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import sendRequest from "../../utilities/send-request";
-import FavouritesCard from "../../components/FavouritesCard";
+import FavouritesCard from "../../components/Favourites";
 import { UserContext } from "../App/App";
 import Recommended from "../../components/Recommended";
+import Favourites from "../../components/Favourites";
 
 export default function ForYouPage() {
   const { user } = useContext(UserContext);
@@ -56,10 +57,10 @@ export default function ForYouPage() {
     renderLoading()
   ) : (
     <>
-      <h1 className="text-l font-bold m-5">
+      <h1 className="text-l font-bold m-10">
         <div> Welcome back, {details.name}! </div>
       </h1>
-      <FavouritesCard details={details} favourites={favourites} />
+      <Favourites details={details} favourites={favourites} />
       <Recommended details={details} favourites={favourites} />
     </>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MoreInfoEvent from "../../components/MoreInfoEvent";
-import Favourites from "../../components/Favourites";
+import Favourites from "../../components/AddToFavourite";
 
 export default function EventDetailsPage() {
     const { id } = useParams();

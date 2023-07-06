@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.patch("/", userDetailsController.updateUserDetails);
 router.get("/getOneUser", userDetailsController.findUserById);
+router.get("/favourites", userDetailsController.getFavouritesById);
 
 export default router;

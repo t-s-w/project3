@@ -18,6 +18,7 @@ import ReceiptCardTestPage from "../ReceiptCardTestPage/ReceiptCardTestPage";
 import PurchaseHistory from '../PurchaseHistory/PurchaseHistory'
 import UserPasswordPage from "../UserPasswordPage/UserPasswordPage";
 import ConfirmPurchasePage from '../ConfirmPurchasePage/ConfirmPurchasePage';
+import ForYouPage from "../ForYouPage/ForYouPage";
 
 
 export const UserContext = createContext();
@@ -34,19 +35,10 @@ function App() {
         />
         <main className="flex flex-col justify-around flex-1">
           <Routes>
-            <Route
-              path="/"
-              element={<AllEventsPage />}
-            />
+            <Route path="/" element={<AllEventsPage />} />
             <Route path="/seatselect" element={<SeatSelect />} />
             <Route path="/events" element={<AllEventsPage />} />
             <Route path="/events/:id" element={<EventDetailsPage />} />
-            <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
-            <Route path="/user/profile" element={<UserDetailPage />} />
-            <Route path="/user/password" element={<UserPasswordPage />} />
-            <Route path="/login" element={<LoginForm setUser={setUser} />} />
-            <Route path="/events/:id/order" element={<OrderPage />} />
-            <Route path="/confirmPurchase" element={<ConfirmPurchasePage />} />
             <Route
               path="/events/categories/categories"
               element={<Categories />}
@@ -55,10 +47,18 @@ function App() {
               path="/events/categories/categories/:categoryName"
               element={<EventsByCategory />}
             />
+            <Route path="/foryou" element={<ForYouPage />} />
             <Route
               path="/events/search/:searchResults"
               element={<SearchResults searchResults={searchResults} />}
             />
+            <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+            <Route path="/user/profile" element={<UserDetailPage />} />
+            <Route path="/user/password" element={<UserPasswordPage />} />
+            <Route path="/login" element={<LoginForm setUser={setUser} />} />
+            <Route path="/events/:id/order" element={<OrderPage />} />
+            <Route path="/confirmPurchase" element={<ConfirmPurchasePage />} />
+
             <Route path="/receiptTest" element={<ReceiptCardTestPage />} />
             <Route path="/purchasehistory" element={<PurchaseHistory />} />
           </Routes>

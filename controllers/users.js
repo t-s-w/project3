@@ -22,11 +22,12 @@ async function create(req, res) {
         const user = await User.create(req.body);
         const token = createJWT(user);
         const response = await UserDetail.create({
-            name:'',
-            contactNo:0,
-            address:'',
-            customerId: user._id
-        })
+          name: "",
+          contactNo: 0,
+          address: "",
+          customerId: user._id,
+          favourites: [],
+        });
         res.json(token);
     } catch (err) {
         if (err.message.match(/^E11000/)) {

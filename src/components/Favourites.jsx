@@ -1,4 +1,3 @@
-const starImage = ''
 import { UserContext } from "../pages/App/App";
 import { useContext, useState } from "react";
 import sendRequest from "../utilities/send-request";
@@ -29,7 +28,7 @@ export default function Favourites({ event }) {
           onClick={handleClick}
           className="bg-transparent flex items-center"
         >
-          <img src={starImage} alt="Star" className="h-10 w-10" />
+          <img src={'/star.png'} alt="Star" className="h-10 w-10" />
         </button>
         {success && (
           <div className="fixed inset-0 flex items-center justify-center z-50">

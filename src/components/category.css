@@ -1,0 +1,7 @@
+.categoryContainer {
+    background: linear-gradient(rgba(33, 33, 33, 0.9), rgba(33, 33, 33, 0.9)), var(--bg-img);
+}
+
+.categoryContainer:hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0.9) 55%, rgba(0, 0, 0, 0.5)), var(--bg-img);
+}

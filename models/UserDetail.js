@@ -21,7 +21,6 @@ const userDetailSchema = new Schema(
       ref: "User",
       unique: true,
     },
-    preferences: { type: String, default: "" },
     favourites: { type: Array, default: [] },
   },
   {

@@ -53,8 +53,8 @@ async function getFavouritesById(req, res) {
     res.status(401).json({ message: "Not logged in" });
   }
   try {
-    const userDetail = await UserDetail.find({ customerId: userId }).populate('favourites');
-    res.json(userDetail);
+    const userDetail = await UserDetail.findOne({ customerId: userId }).populate('favourites');
+    res.json(userDetail.favourites);
   } catch {
     res.status(404).json({ msg: "Id not found!" });
   }

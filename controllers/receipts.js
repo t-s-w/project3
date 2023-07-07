@@ -112,7 +112,7 @@ export async function getReceiptWithEvent(req, res) {
 }
 
 export async function getReceiptsByUser(req, res) {
-  const userId = req.user._id
+  const userId = req.user?._id
   if (!userId) {
     res.status(401).json({ message: "Not logged in" })
   }

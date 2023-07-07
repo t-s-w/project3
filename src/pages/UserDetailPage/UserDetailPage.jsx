@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import sendRequest from "../../utilities/send-request";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App/App";
+import NotLoggedIn from "../../components/NotLoggedIn";
 
 export default function UserDetailPage() {
   const { id } = useParams();
@@ -48,63 +49,65 @@ export default function UserDetailPage() {
   };
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-left justify h-screen"
-      >
-        <h1 className="text-2xl text-left m-5">
-          <b>Your details</b>
-        </h1>
-        <div className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
-          <div className="grid grid-cols-2 gap-4">
-            <label className="mb-2 text-left" value={details.name}>
-              {" "}
-              Name{" "}
-            </label>
-            <input
-              className="p-2 pl-4 border-solid border-2 rounded-full"
-              type="text"
-              name="name"
-              defaultValue={details.name}
-              onChange={handleInputChange} // Add onChange event handler to track input changes
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <label className="mb-2 text-left"> Contact number </label>{" "}
-            <input
-              className="p-2 pl-4 border-solid border-2 rounded-full"
-              type="text"
-              minLength="8"
-              name="contactNo"
-              defaultValue={details.contactNo}
-              onChange={handleInputChange} // Add onChange event handler to track input changes
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <label className="mb-2 text-left"> Mailing address </label>
-            <input
-              className="p-2 pl-4 border-solid border-2 rounded-full"
-              type="text"
-              name="address"
-              defaultValue={details.address}
-              onChange={handleInputChange} // Add onChange event handler to track input changes
-            />
-          </div>
-          <button
-            className={`w-fit bg-blue-800 text-darkDefault font-bold ${!isModified ? "bg-slate-500" : ""
-              }`}
-            disabled={!isModified}
-          >
-            Confirm
-          </button>
-          {success && (
-            <div className="text-green-800">
-              Your profile has been successfully updated.
+    user ?
+      <>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-left justify h-screen"
+        >
+          <h1 className="text-2xl text-left m-5">
+            <b>Your details</b>
+          </h1>
+          <div className="[&>*]:m-2 [&>input]:disabled:text-slate-200 border-solid flex flex-col place-content-center place-items-left w-1/2 p-10">
+            <div className="grid grid-cols-2 gap-4">
+              <label className="mb-2 text-left" value={details.name}>
+                {" "}
+                Name{" "}
+              </label>
+              <input
+                className="p-2 pl-4 border-solid border-2 rounded-full"
+                type="text"
+                name="name"
+                defaultValue={details.name}
+                onChange={handleInputChange} // Add onChange event handler to track input changes
+              />
             </div>
-          )}
-        </div>
-      </form>
-    </>
+            <div className="grid grid-cols-2 gap-4">
+              <label className="mb-2 text-left"> Contact number </label>{" "}
+              <input
+                className="p-2 pl-4 border-solid border-2 rounded-full"
+                type="text"
+                minLength="8"
+                name="contactNo"
+                defaultValue={details.contactNo}
+                onChange={handleInputChange} // Add onChange event handler to track input changes
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <label className="mb-2 text-left"> Mailing address </label>
+              <input
+                className="p-2 pl-4 border-solid border-2 rounded-full"
+                type="text"
+                name="address"
+                defaultValue={details.address}
+                onChange={handleInputChange} // Add onChange event handler to track input changes
+              />
+            </div>
+            <button
+              className={`w-fit bg-blue-800 text-darkDefault font-bold ${!isModified ? "bg-slate-500" : ""
+                }`}
+              disabled={!isModified}
+            >
+              Confirm
+            </button>
+            {success && (
+              <div className="text-green-800">
+                Your profile has been successfully updated.
+              </div>
+            )}
+          </div>
+        </form>
+      </> :
+      <NotLoggedIn />
   );
 }

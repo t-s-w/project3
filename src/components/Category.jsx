@@ -1,18 +1,28 @@
 import { Link } from "react-router-dom"
+import './category.css'
+const images = {
+    Music: "/music.jpg",
+    "Arts & Theatre": "/arts.jpg",
+    Miscellaneous: "/misc.jpg",
+    Sports: "/sports.jpg"
+}
 
-export default function Category (props){
-    
+
+
+export default function Category(props) {
+
     return (
-    <div>
-        
-        <div className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-            <h2><Link 
+        <Link
+            className="categoryContainer w-1/2 h-60 flex flex-col justify-center items-center bg-center bg-cover text-center"
             to={`/events/categories/categories/${props.categoryName}`}
-            state={{categoryArray: props.categoryArray,
-            categoryName: props.categoryName
+            style={{ "--bg-img": `url(${images[props.categoryName]})` }}
+            state={{
+                categoryArray: props.categoryArray,
+                categoryName: props.categoryName
             }}
-            >{props.categoryName}</Link></h2>
-        </div>
-    </div>
+        ><p className="font-bold text-darkDefault text-2xl">
+                {props.categoryName}
+            </p>
+        </Link>
     )
 }

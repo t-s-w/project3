@@ -50,7 +50,7 @@ export default function SeatSelector(props) {
   return (
     (config1 && prices) ?
       <div className="grid grid-cols-3 grid-rows-4">
-        <div className="config1 w-full flex flex-col place-items-center col-span-3 row-span-3">
+        <div className="config1 w-full flex flex-col place-items-center col-span-3 row-span-3 mb-10">
           <div className="bg-pink-500 dark:bg-pink-500 p-10">STAGE</div>
           {config1.map((x) => {
             const seats = generate2DigitNums(x.count).map((num) => ({

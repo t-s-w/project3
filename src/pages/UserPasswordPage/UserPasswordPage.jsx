@@ -106,7 +106,7 @@ export default function UserPasswordPage() {
               </form>
             ) : (
               <button
-                className="w-fit bg-blue-800 font-bold"
+                className="w-fit bg-blue-800 font-bold text-darkDefault"
                 onClick={handleClick}
               >
                 Change

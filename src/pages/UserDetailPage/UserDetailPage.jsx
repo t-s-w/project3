@@ -92,7 +92,7 @@ export default function UserDetailPage() {
             />
           </div>
           <button
-            className={`w-fit bg-blue-800 font-bold ${!isModified ? "bg-slate-400" : ""
+            className={`w-fit bg-blue-800 text-darkDefault font-bold ${!isModified ? "bg-slate-500" : ""
               }`}
             disabled={!isModified}
           >

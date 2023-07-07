@@ -15,5 +15,9 @@ Ticketmaster has a monopoly on the ticketing world. It's past time that a compet
 
 ## Getting Started
 
-Live URL: https://ticketmadam.cyclic.app
-Planning: https://miro.com/app/board/uXjVM9NrAOo=/
+* Live URL: https://ticketmadam.cyclic.app
+* Planning: https://miro.com/app/board/uXjVM9NrAOo=/
+
+## Data Model
+
+![Data model](./ticketmadam ERD.png)

@@ -37,7 +37,7 @@ export default function Recommended(props) {
 
   async function fetchRecommended() {
     try {
-      const response = await fetch("/api/events/foryou/recommendations");
+      const response = await fetch("/api/events/foryou/recommendations/?topSegment=" + topSegment);
       const data = await response.json();
       //first 10 recos only
       const recommendations = data.slice(0, 10);
@@ -50,7 +50,7 @@ export default function Recommended(props) {
   }
   useEffect(() => {
     fetchRecommended();
-  }, []);
+  }, [topSegment]);
 
   const renderLoading = () => (
     <div role="status">

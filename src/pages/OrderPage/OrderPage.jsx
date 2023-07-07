@@ -1,9 +1,13 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import SeatSelector from "../../components/SeatSelector";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../App/App";
+import NotLoggedIn from "../../components/NotLoggedIn";
 
 
 export default function OrderPage() {
+  const { user } = useContext(UserContext);
+  if (!user) { return <NotLoggedIn /> }
   const { id } = useParams();
   const [event, setEvent] = useState({});
   const [unavailableSeats, setUnavailableSeats] = useState(new Set());

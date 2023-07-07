@@ -28,11 +28,13 @@ async function updateUserDetails(req, res) {
 }
 
 async function findUserById(req, res) {
-  const userId = req.user._id;
-  if (!userId) {
-    res.status(401).json({ message: "Not logged in" });
+
+  if (!req.user) {
+    res.status(401).json({ message: "Not logged in" }); return
   }
+
   try {
+    const userId = req.user._id;
     const userDetail = await UserDetail.findOne({ customerId: userId });
     if (userDetail.length > 0) {
       console.log("routed");
@@ -48,11 +50,12 @@ async function findUserById(req, res) {
 }
 
 async function getFavouritesById(req, res) {
-  const userId = req.user._id;
-  if (!userId) {
-    res.status(401).json({ message: "Not logged in" });
+
+  if (!req.user) {
+    res.status(401).json({ message: "Not logged in" }); return
   }
   try {
+    const userId = req.user._id;
     const userDetail = await UserDetail.findOne({ customerId: userId }).populate('favourites');
     res.json(userDetail.favourites);
   } catch {

@@ -4,6 +4,7 @@ import FavouritesCard from "../../components/Favourites";
 import { UserContext } from "../App/App";
 import Recommended from "../../components/Recommended";
 import Favourites from "../../components/Favourites";
+import NotLoggedIn from "../../components/NotLoggedIn";
 
 export default function ForYouPage() {
   const { user } = useContext(UserContext);
@@ -13,9 +14,14 @@ export default function ForYouPage() {
 
   //get user
   async function getOneUserDetail() {
-    const response = await sendRequest(`/api/userDetails/getOneUser`);
-    setDetails(response);
-    setLoading(false);
+    try {
+      const response = await sendRequest(`/api/userDetails/getOneUser`);
+      setDetails(response);
+    } catch (err) {
+      return
+    } finally {
+      setLoading(false);
+    }
   }
   useEffect(() => {
     getOneUserDetail().then(console.log);
@@ -23,9 +29,17 @@ export default function ForYouPage() {
 
   //get favourites
   async function getFavourites() {
-    const response = await sendRequest(`/api/userDetails/favourites`);
-    setFavourites(response);
-    console.log("favourites", response);
+    try {
+
+      const response = await sendRequest(`/api/userDetails/favourites`);
+      setFavourites(response);
+
+    } catch (err) {
+      return
+    } finally {
+      setLoading(false);
+    }
+
   }
   useEffect(() => {
     getFavourites();
@@ -35,7 +49,7 @@ export default function ForYouPage() {
     <div role="status">
       <svg
         aria-hidden="true"
-        class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        className="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -56,13 +70,16 @@ export default function ForYouPage() {
   return loading ? (
     renderLoading()
   ) : (
-    <>
-      <div className="text-4xl font-bold text-cente my-10">
-        ༻─━─━ Welcome back, {details.name}! ━─━─༺
-      </div>
-      <Recommended details={details} favourites={favourites} />
-      <Favourites details={details} favourites={favourites} />
+    user ?
+      <>
+        <div className="text-4xl font-bold text-cente my-10">
+          ༻─━─━ Welcome back, {details.name}! ━─━─༺
+        </div>
+        <Recommended details={details} favourites={favourites} />
+        <Favourites details={details} favourites={favourites} />
 
-    </>
+      </>
+      :
+      <NotLoggedIn />
   );
 }

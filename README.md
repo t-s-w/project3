@@ -20,4 +20,4 @@ Ticketmaster has a monopoly on the ticketing world. It's past time that a compet
 
 ## Data Model
 
-![Data model](./ticketmadam ERD.png)
+![Data model](./ticketmadamERD.png)
